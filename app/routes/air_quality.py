@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.models import AirQuality
+from app.models.db.weather import AirQuality
 from app.services.air_quality_service import fetch_air_quality
 
 router = APIRouter()

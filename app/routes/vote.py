@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Body
 from typing import List
-from app.models import ActivityVote
+from app.models.db.activity import ActivityVote
 
 router = APIRouter()
 

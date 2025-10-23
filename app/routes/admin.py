@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from app.models import Activity
 from typing import List
+from app.models.db.activity import Activity
 
 
 router = APIRouter(prefix="/admin", tags=["admin"])

@@ -1,6 +1,7 @@
 import os
 import httpx
-from app.models import AirQuality
+
+from app.models.db.weather import AirQuality # to be fixed
 
 OPENAQ_URL = "https://api.openaq.org/v3/measurements"
 API_KEY = os.getenv("OPENAQ_API_KEY", "e606a673d174e3126259f4c26bd3dd2e1b442de9b1aa5fa574f58348d55d3b14")

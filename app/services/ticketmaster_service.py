@@ -1,7 +1,8 @@
 import os
 import httpx
 from typing import List
-from app.models import Activity, ActivityType
+
+from app.models.db.activity import Activity, ActivityType
 
 TICKETMASTER_URL = "https://app.ticketmaster.com/discovery/v2/events.json"
 API_KEY = os.getenv("TICKETMASTER_API_KEY", "Xkpv1HdAKWlmbtOPwqOpRv7RRDgUOtZU")

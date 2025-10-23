@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from typing import List
-from app.models import Activity
+from app.models.db.activity import Activity
 from app.services.ticketmaster_service import fetch_activities as fetch_ticketmaster_activities
 from app.services.weather_service import fetch_weather
 

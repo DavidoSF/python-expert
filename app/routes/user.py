@@ -1,6 +1,5 @@
 from fastapi import APIRouter
-from app.models import User, UserRole
-from typing import List
+from app.models.db.user import User, UserRole
 
 router = APIRouter(prefix="/user", tags=["user"])
 
