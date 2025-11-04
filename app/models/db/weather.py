@@ -12,5 +12,6 @@ class AirQuality(BaseModel):
     city: str
     date: str
     aqi: int
+    category: Optional[str] = None
     description: Optional[str] = None
     cached: bool = False
