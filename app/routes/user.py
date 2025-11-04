@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.models.db.user import User, UserRole, UserCreate, UserUpdate
-from datetime import date, datetime
-from fastapi import HTTPException
+from datetime import date, datetime, timezone
+from fastapi import HTTPException, Response
 from app.services import user_service
 import os
 from typing import Optional
@@ -25,8 +25,8 @@ def get_profile():
         interests=["music", "hiking"],
         activity_preference="outdoor",
         role=UserRole.subscriber,
-        created_at=datetime.utcnow(),
-        updated_at=datetime.utcnow(),
+        created_at=datetime.now(timezone.utc),
+        updated_at=datetime.now(timezone.utc),
     )
 
 @router.get("/{user_id}", response_model=User)
@@ -41,7 +41,8 @@ def get_user(user_id: int):
 @router.post("/", response_model=User, status_code=201)
 def create_user(user: UserCreate):
     """Create a new user in the session store (does not modify the original JSON file)."""
-    data = user.dict()
+    # Use Pydantic v2 API
+    data = user.model_dump()
     data.pop("id", None)
     created = user_service.create_user(data)
     return User(**created)
@@ -51,7 +52,8 @@ def create_user(user: UserCreate):
 def update_user(user_id: int, user: UserUpdate):
     """Update an existing user in the session store."""
     # Only include fields that were actually provided in the request body
-    data = user.dict(exclude_unset=True)
+    # Use Pydantic v2 API
+    data = user.model_dump(exclude_unset=True)
     data.pop("id", None)
     updated = user_service.update_user(user_id, data)
     if not updated:
@@ -65,7 +67,8 @@ def delete_user(user_id: int):
     deleted = user_service.delete_user(user_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="User not found")
-    return None
+    # Return an explicit empty response for 204 so no JSON content-type is set
+    return Response(status_code=204)
 
 
 # Development-only endpoint: reset the in-memory user store to the original JSON.
@@ -85,6 +88,7 @@ def reset_users(x_reset_token: Optional[str] = Header(None)):
         if x_reset_token != RESET_TOKEN:
             raise HTTPException(status_code=403, detail="Forbidden")
     user_service.reset_store()
-    return None
+    # Return explicit empty response for 204 to avoid application/json content-type
+    return Response(status_code=204)
 
 

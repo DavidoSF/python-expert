@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import List, Optional, Dict, Any
 from threading import Lock
-from datetime import datetime
+from datetime import datetime, timezone
 
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "users.json"
 
@@ -14,7 +14,8 @@ _INITIAL_LOADED = False
 
 
 def _now_iso() -> str:
-    return datetime.utcnow().isoformat() + "Z"
+    # Use timezone-aware UTC timestamps and format with a trailing Z
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
 def _load_initial() -> None:
@@ -37,8 +38,12 @@ def _load_initial() -> None:
 
 def reset_store() -> None:
     """Reset the in-memory store back to the initial JSON contents."""
-    with _LOCK:
-        _load_initial()
+    # _load_initial() already acquires the lock when assigning to the module
+    # state. Holding the same non-reentrant Lock here and then calling
+    # _load_initial() would attempt to acquire the lock twice and deadlock.
+    # Call _load_initial without holding the outer lock so the internal
+    # lock acquisition can proceed safely.
+    _load_initial()
 
 
 def _ensure_loaded() -> None:
