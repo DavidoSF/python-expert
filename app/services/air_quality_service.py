@@ -1,36 +1,65 @@
 import os
 import httpx
 
-from app.models.db.weather import AirQuality # to be fixed
+from app.models.db.weather import AirQuality 
 
-OPENAQ_URL = "https://api.openaq.org/v3/measurements"
-API_KEY = os.getenv("OPENAQ_API_KEY", "e606a673d174e3126259f4c26bd3dd2e1b442de9b1aa5fa574f58348d55d3b14")
+OPENAQ_URL = "https://api.waqi.info/feed"
+API_KEY = os.getenv("WAQI_API_KEY", "4385c71a243e9820e4003eeadd7dce12bc267f19")
+
+def get_aqi_category(aqi: int) -> str:
+    """Return AQI category based on standard AQI ranges"""
+    if aqi <= 50:
+        return "Good"
+    elif aqi <= 100:
+        return "Moderate"
+    elif aqi <= 150:
+        return "Unhealthy for Sensitive Groups"
+    elif aqi <= 200:
+        return "Unhealthy"
+    elif aqi <= 300:
+        return "Very Unhealthy"
+    else:
+        return "Hazardous"
 
 async def fetch_air_quality(city: str, date: str, country: str = None) -> AirQuality:
-    params = {
-        "city": city,
-        "date_from": date,
-        "date_to": date,
-        "limit": 10
-    }
-    if country:
-        params["country"] = country
-    headers = {"x-api-key": API_KEY}
+    # WAQI API endpoint format: https://api.waqi.info/feed/{city}/?token={token}
+    city_query = f"{city}/{country}" if country else city
+    url = f"{OPENAQ_URL}/{city_query}/"
+    params = {"token": API_KEY}
+    
     async with httpx.AsyncClient() as client:
-        response = await client.get(OPENAQ_URL, params=params, headers=headers)
+        response = await client.get(url, params=params)
         data = response.json()
-        results = data.get("results", [])
-        measurements = [r for r in results if "value" in r and "parameter" in r]
-        if measurements:
-            pm_values = [m["value"] for m in measurements if m["parameter"] in ["pm25", "pm10"]]
-            if pm_values:
-                aqi = int(sum(pm_values) / len(pm_values))
-                description = "AQI based on PM2.5/PM10"
-            else:
-                values = [m["value"] for m in measurements]
-                aqi = int(sum(values) / len(values)) if values else 0
-                description = ", ".join([m["parameter"] for m in measurements])
+        
+        if data.get("status") == "ok" and "data" in data:
+            aqi_data = data["data"]
+            aqi = aqi_data.get("aqi", 0)
+            category = get_aqi_category(aqi)
+            
+            # Build description from available pollutants
+            # Note: WAQI API returns individual AQI values, not actual concentrations
+            pollutants = []
+            iaqi = aqi_data.get("iaqi", {})
+            
+            # Map pollutant names to their display format
+            pollutant_map = {
+                "pm25": "PM2.5",
+                "pm10": "PM10",
+                "o3": "O₃",
+                "no2": "NO₂",
+                "so2": "SO₂",
+                "co": "CO"
+            }
+            
+            for pollutant_key, display_name in pollutant_map.items():
+                if pollutant_key in iaqi:
+                    value = iaqi[pollutant_key].get('v', 0)
+                    pollutants.append(f"{display_name}: {value}")
+            
+            description = ", ".join(pollutants) if pollutants else f"Overall AQI: {aqi}"
         else:
             aqi = 0
+            category = None
             description = "No air quality data found for this city/date."
-        return AirQuality(city=city, date=date, aqi=aqi, description=description, cached=False)
+        
+        return AirQuality(city=city, date=date, aqi=aqi, category=category, description=description, cached=False)
