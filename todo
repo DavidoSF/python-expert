@@ -1,9 +1,9 @@
 1. document each file
 2. update test dynamically
-3. algorithms for activities with weather
-4. fix activities/by-weather endpoint
-5. add age, gender etc.. to user
-6. add dummy file data
+3. algorithms for activities with weather (95%)
+4. fix activities/by-weather endpoint (95%)
+5. add age, gender etc.. to user (100%)
+6. add dummy file data (100%)
 7. admin control
 8. continue and fix vote system
 9. fix air quality endpoint

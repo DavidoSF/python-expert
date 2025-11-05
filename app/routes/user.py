@@ -9,26 +9,6 @@ from fastapi import Header
 
 router = APIRouter(prefix="/user", tags=["user"])
 
-@router.get("/profile", response_model=User)
-def get_profile():
-    return User(
-        id=1,
-        username="alice",
-        email="alice@example.com",
-        first_name="Alice",
-        last_name="Smith",
-        birth_date=date(1990, 1, 1),
-        gender="female",
-        phone_number="+15551234567",
-        country="US",
-        city="Seattle",
-        interests=["music", "hiking"],
-        activity_preference="outdoor",
-        role=UserRole.subscriber,
-        created_at=datetime.now(timezone.utc),
-        updated_at=datetime.now(timezone.utc),
-    )
-
 @router.get("/{user_id}", response_model=User)
 def get_user(user_id: int):
     """Return a user by id from the JSON data file; raises 404 if not found."""
