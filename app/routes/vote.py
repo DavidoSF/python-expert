@@ -12,7 +12,7 @@ def submit_vote(vote: Vote = Body(...)):
     # Basic validation: ensure activity_ranking is non-empty
     if not vote.activity_ranking:
         raise HTTPException(status_code=400, detail="activity_ranking must be a non-empty list of activity ids")
-    vote_dict = vote.dict()
+    vote_dict = vote.model_dump()
     vote_service.add_vote(vote_dict)
     return {"status": "ok"}
 
