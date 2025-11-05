@@ -13,20 +13,6 @@ router = APIRouter()
 from app.routes.admin import admin_activities
 from app.services.activities_service import fetch_activities_by_weather, get_weather_recommendation
 
-@router.get("/activities", response_model=List[Activity])
-async def get_activities(
-    city: str, 
-    countryCode: str, 
-    date: str
-):
-    """
-    Get all activities for a city and date, optionally filtered by user preferences.
-    """
-    ticketmaster_acts = await fetch_ticketmaster_activities(city, countryCode, date)
-    custom_acts = [a for a in admin_activities if a.location == city and a.date == date]
-        
-    return ticketmaster_acts + custom_acts
-
 @router.post("/activities/personalized", response_model=List[Activity])
 async def get_personalized_activities(
     city: str,

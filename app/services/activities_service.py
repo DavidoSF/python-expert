@@ -100,7 +100,7 @@ async def fetch_activities_by_weather(
         if activity_types and activity.type not in activity_types:
             print("print 1")
             continue
-            
+
         # Apply weather-based filtering
         if preference == "all":
             print("print 2")
@@ -113,7 +113,7 @@ async def fetch_activities_by_weather(
             if not activity.is_indoor:
                 print("Skipping")
                 continue  # Skip outdoor activities
-
+            
         # Apply user-specific filtering
         if user:
             # Age-based filtering (example: some activities might not be suitable for certain ages)
