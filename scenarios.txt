@@ -1,0 +1,89 @@
+US-01 | City-only search
+Description: User selects a city and date without signing in.
+Preconditions: Activities exist for the city/date.
+Steps: Select city + date → Request recommendations.
+Expected: Return list of activities for that city/date, grouped by indoor/outdoor.
+
+US-02 | Signed-in user, no preferences
+Description: Authenticated user with no saved preferences requests activities.
+Preconditions: User profile exists but no interests/preferences set.
+Steps: Sign in → Select city/date → Request recommendations.
+Expected: Results prioritized by popularity and availability; show option to set preferences.
+
+US-03 | Indoor preference enforced
+Description: User prefers indoor activities.
+Preconditions: User.activity_preference = "indoor".
+Steps: Select city/date → Request recommendations.
+Expected: Only indoor activities returned (or indoor first) with reasons "user preference: indoor".
+
+US-04 | Outdoor preference with good AQI/weather
+Description: User prefers outdoor; AQI and weather are favorable.
+Preconditions: activity_preference = "outdoor"; AQI = Good; weather = clear.
+Steps: Select city/date → Request recommendations.
+Expected: Outdoor activities prioritized; safety = "ok".
+
+US-05 | Interest-based personalization
+Description: User has interests (e.g., music, hiking).
+Preconditions: User.interests populated.
+Steps: Select city/date → Request recommendations.
+Expected: Activities matching interests ranked higher; reasons list interest matches.
+
+US-06 | High AQI — sensitive user
+Description: AQI is Unhealthy (151+) and user is sensitive/has health flag.
+Preconditions: AQI >= 151.
+Steps: Select city/date → Request recommendations.
+Expected: Outdoor activities marked "avoid" or filtered out; indoor suggestions offered; warning message returned.
+
+US-07 | Moderate AQI — general caution
+Description: AQI is 101–150 (Unhealthy for Sensitive Groups).
+Preconditions: AQI in 101–150.
+Steps: Select city/date → Request recommendations.
+Expected: Outdoor activities labeled "caution" and deprioritized; indoor activities preferred.
+
+US-08 | Bad weather (storm/rain)
+Description: Severe weather predicted (storm, heavy rain).
+Preconditions: Weather service returns severe condition.
+Steps: Select city/date → Request recommendations.
+Expected: Outdoor activities deprioritized; indoor activities recommended; show weather context.
+
+US-09 | Child user (under 13)
+Description: User is under 13 years old.
+Preconditions: birth_date indicates age < 13.
+Steps: Select city/date → Request recommendations.
+Expected: Filter out adult-only activities; return family/kid-friendly activities only.
+
+US-10 | Teen user (under 18)
+Description: User is 16 years old.
+Preconditions: birth_date indicates age < 18.
+Steps: Select city/date → Request recommendations.
+Expected: Filter out 18+/adult-only activities (e.g., bars, casinos); show teen-appropriate options.
+
+US-11 | No activities found
+Description: No activities available for selected city/date.
+Preconditions: No matching activities in data sources.
+Steps: Select city/date → Request recommendations.
+Expected: Empty recommendations list + suggestions: try nearby cities, different date, or broaden preferences.
+
+US-12 | User override of safety recommendation
+Description: System marks outdoor activities as "caution/avoid" but user wants to see them anyway.
+Preconditions: AQI/weather triggers caution label.
+Steps: Select city/date → View recommendations → User toggles "show avoided activities".
+Expected: System shows avoided activities with prominent warnings and requires explicit user confirmation to proceed.
+
+US-13 | Pagination / large result set
+Description: Many activities exist; UI needs pagination.
+Preconditions: > max_results.
+Steps: Select city/date → Request recommendations with page params.
+Expected: Return paginated results and total count; stable sorting across pages.
+
+US-14 | Partial data (missing AQI/weather)
+Description: External AQI or weather service is unavailable.
+Preconditions: AQI or weather API failure.
+Steps: Select city/date → Request recommendations.
+Expected: Return recommendations using available signals; include warning "AQI/weather unavailable" and fallbacks.
+
+US-15 | Location mismatch normalization
+Description: Activity location strings differ from user city spelling/diacritics.
+Preconditions: Activity.location inconsistent formatting.
+Steps: Select city/date → Request recommendations.
+Expected: System normalizes strings and matches activities in the intended city; note normalization in logs/context.
