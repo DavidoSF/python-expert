@@ -40,6 +40,22 @@ async def list_admin_activities(
 
     return ticketmaster_acts + custom_acts
 
+@router.get("/all-activities", response_model=List[Activity])
+async def list_activities(
+    admin_user_id: int,
+):
+    """Return all admin-added activities.
+
+    This endpoint requires the requesting user to be an administrator. For demo purposes
+    the caller must supply `admin_user_id` (in production use proper auth).
+    """
+    user_record = user_service.get_user_by_id(admin_user_id)
+    if not user_record or user_record.get("role") != UserRole.administrator.value:
+        raise HTTPException(status_code=403, detail="Administrator privileges required")
+
+    return admin_activities
+
+
 
 @router.get("/config", response_model=Dict[str, Any])
 def get_configuration(admin_user_id: int):

@@ -21,14 +21,18 @@ from app.services.activities_service import (
 async def get_personalized_activities(
     city: str,
     countryCode: str,
-    date: str,
-    max_results: Optional[int] = 20
+    date: Optional[str] = "2025-11-06",
+    user_id: Optional[int] = 1,
+    max_results: Optional[int] = 20,
 ):
     """
     Get personalized activities based on user profile and weather conditions.
     """
     
-    user = get_user(1)
+    user = get_user(user_id)
+    
+    if date is None:
+        date = datetime.now().date().isoformat()
 
     return await fetch_activities_by_weather(
         city=city,
@@ -44,6 +48,7 @@ async def get_activities_by_votes(
     countryCode: str,
     date: str,
     weather_preference: Optional[str] = "auto",
+    user_id: Optional[int] = 1,
     max_results: Optional[int] = 20
 ):
     """
@@ -59,7 +64,7 @@ async def get_activities_by_votes(
     Returns:
         List of activities ordered by vote count (most votes first)
     """
-    user = get_user(1)  # Get current user for personalization
+    user = get_user(user_id)  # Get current user for personalization
     
     return await fetch_activities_by_weather_ordered_by_votes(
         city=city,

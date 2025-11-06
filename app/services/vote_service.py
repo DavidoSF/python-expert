@@ -1,9 +1,8 @@
-from typing import List, Dict, Optional
+from typing import List, Dict
 from threading import Lock
-from app.models.db.vote import Vote
 
 _LOCK = Lock()
-_VOTES: List[Dict] = []  # list of vote dicts
+_VOTES: List[Dict] = []  # list of vote dicts: {"user_id": int, "activity_id": int, "score": int}
 
 
 def reset_votes() -> None:
@@ -13,92 +12,51 @@ def reset_votes() -> None:
 
 
 def add_vote(vote: Dict) -> None:
-    """Add a vote (expects dict with 'user_id' and 'activity_ranking' list of ids)."""
+    print("Adding vote:", vote)
+    """Add a single activity vote."""
     with _LOCK:
         _VOTES.append(vote.copy())
 
 
 def list_votes() -> List[Dict]:
+    """Get all votes."""
     with _LOCK:
         return [v.copy() for v in _VOTES]
 
 
-def _pairwise_counts(candidates: List[int]) -> Dict[int, Dict[int, int]]:
-    """Return nested dict counts[a][b] = number of voters preferring a over b."""
-    counts = {a: {b: 0 for b in candidates if b != a} for a in candidates}
+def get_votes_for_activity(activity_id: int) -> List[Dict]:
+    """Get all votes for a specific activity."""
     with _LOCK:
-        votes = [v.copy() for v in _VOTES]
-    for v in votes:
-        ranking = v.get("activity_ranking", [])
-        # Build a position map: activity_id -> position (lower is more preferred)
-        pos = {aid: idx for idx, aid in enumerate(ranking)}
-        for a in candidates:
-            for b in candidates:
-                if a == b:
-                    continue
-                pa = pos.get(a, None)
-                pb = pos.get(b, None)
-                # If a appears and b not, prefer a. If both appear, compare positions.
-                if pa is not None and pb is None:
-                    counts[a][b] += 1
-                elif pa is None and pb is not None:
-                    # prefer b, so a does not get a vote
-                    pass
-                elif pa is not None and pb is not None:
-                    if pa < pb:
-                        counts[a][b] += 1
-                else:
-                    # neither ranked: no preference
-                    pass
-    return counts
+        return [v.copy() for v in _VOTES if v.get("activity_id") == activity_id]
 
 
-def condorcet_ranking(candidates: List[int]) -> Dict:
-    """Compute Condorcet pairwise results and return ranking info.
-
-    Returns a dict with:
-      - 'pairwise': counts dict
-      - 'winner': candidate id if Condorcet winner exists else None
-      - 'copeland': list of tuples (candidate, score) sorted desc
+def get_activity_ranking() -> List[Dict]:
     """
-    counts = _pairwise_counts(candidates)
-    # Determine pairwise wins
-    wins = {a: 0 for a in candidates}
-    losses = {a: 0 for a in candidates}
-    for a in candidates:
-        for b in candidates:
-            if a == b:
-                continue
-            a_over_b = counts[a].get(b, 0)
-            b_over_a = counts[b].get(a, 0)
-            if a_over_b > b_over_a:
-                wins[a] += 1
-            elif a_over_b < b_over_a:
-                losses[a] += 1
-            else:
-                # tie => no increment
-                pass
-    # Condorcet winner: candidate that beats every other (wins == n-1)
-    n = len(candidates)
-    winner = None
-    for a in candidates:
-        if wins[a] == n - 1:
-            winner = a
-            break
-    # Copeland score: wins - losses
-    copeland = [(a, wins[a] - losses[a]) for a in candidates]
-    copeland.sort(key=lambda x: x[1], reverse=True)
-    return {"pairwise": counts, "winner": winner, "copeland": copeland}
-
-
-# Convenience: compute ranking from stored votes across all candidates found in votes
-def ranking_from_votes() -> Dict:
+    Get activities ranked by average score.
+    Returns list of {activity_id, average_score, vote_count} sorted by score desc.
+    """
     with _LOCK:
         votes = [v.copy() for v in _VOTES]
-    # collect candidate ids
-    candidates = set()
+    
+    # Group by activity
+    activity_scores = {}
     for v in votes:
-        for aid in v.get("activity_ranking", []):
-            candidates.add(aid)
-    candidates = list(candidates)
-    return condorcet_ranking(candidates)
+        aid = v.get("activity_id")
+        score = v.get("score")
+        if aid not in activity_scores:
+            activity_scores[aid] = []
+        activity_scores[aid].append(score)
+    
+    # Calculate averages
+    ranking = []
+    for aid, scores in activity_scores.items():
+        avg = sum(scores) / len(scores)
+        ranking.append({
+            "activity_id": aid,
+            "average_score": round(avg, 2),
+            "vote_count": len(scores)
+        })
+    
+    # Sort by average score descending
+    ranking.sort(key=lambda x: x["average_score"], reverse=True)
+    return ranking

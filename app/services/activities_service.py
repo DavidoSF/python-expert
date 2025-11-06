@@ -332,23 +332,24 @@ async def fetch_activities_by_weather_ordered_by_votes(
 
     # Get all votes
     votes = list_votes()
+    print("All votes: ", votes)
     
-    # Calculate vote counts for each activity
-    activity_votes: Dict[int, int] = {}
+    # Calculate average score and vote count for each activity
+    activity_scores: Dict[int, Tuple[float, int]] = {}  # activity_id -> (avg_score, vote_count)
     for activity in activities:
-        vote_count = 0
-        for vote in votes:
-            # Count how many times this activity appears first in rankings
-            rankings = vote.get("activity_ranking", [])
-            if rankings and rankings[0] == activity.id:
-                vote_count += 1
-        activity_votes[activity.id] = vote_count
+        activity_votes_list = [v for v in votes if v.get("activity_id") == activity.id]
+        if activity_votes_list:
+            avg_score = sum(v.get("score", 0) for v in activity_votes_list) / len(activity_votes_list)
+            vote_count = len(activity_votes_list)
+            activity_scores[activity.id] = (avg_score, vote_count)
+        else:
+            activity_scores[activity.id] = (0.0, 0)
 
-    # Sort activities by vote count
+    # Sort activities by average score (primary) and vote count (secondary)
     sorted_activities = sorted(
         activities,
-        key=lambda x: activity_votes.get(x.id, 0),
-        reverse=True  # Most votes first
+        key=lambda x: (activity_scores.get(x.id, (0.0, 0))[0], activity_scores.get(x.id, (0.0, 0))[1]),
+        reverse=True  # Highest score and most votes first
     )
 
     # Apply max results limit if specified

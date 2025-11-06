@@ -83,11 +83,54 @@ export TICKETMASTER_API_KEY="your_ticketmaster_key"
 - `GET /activities/by-weather` - Get activities filtered by weather
 - `POST /activities/personalized` - Get personalized activity recommendations
 - `GET /weather-recommendation` - Get weather-based preference recommendation
-- `POST /vote` - Submit activity votes
+- `POST /vote/` - Submit ranked activity vote (Condorcet method)
+- `GET /vote/` - List all votes
+- `GET /vote/result` - Get Condorcet voting results
 - `GET /user/{user_id}` - Get user profile
 - `POST /user/` - Create new user
 - `PUT /user/{user_id}` - Update user profile
 - `DELETE /user/{user_id}` - Delete user
+
+### Voting System
+
+The application uses **simple score-based voting** for activities:
+
+**Vote for one or more activities:**
+```json
+{
+  "votes": [
+    {"user_id": 1, "activity_id": 5, "score": 9},
+    {"user_id": 1, "activity_id": 3, "score": 7},
+    {"user_id": 1, "activity_id": 8, "score": 10}
+  ]
+}
+```
+
+- **Score range**: 1-10 (10 = best, like it the most)
+- **No duplicates**: Cannot vote for the same activity twice in one submission
+- **Get ranking**: `GET /vote/ranking` returns activities sorted by average score
+
+**Endpoints:**
+- `POST /vote/` - Submit votes for activities
+- `GET /vote/` - List all votes
+- `GET /vote/activity/{activity_id}` - Get votes for specific activity with average
+- `GET /vote/ranking` - Get all activities ranked by average score
+
+**Example:**
+```bash
+# Vote for activities
+curl -X POST "http://localhost:8000/vote/" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "votes": [
+      {"user_id": 1, "activity_id": 5, "score": 9},
+      {"user_id": 1, "activity_id": 3, "score": 7}
+    ]
+  }'
+
+# Get ranking
+curl "http://localhost:8000/vote/ranking"
+```
 
 ### Admin Endpoints (UC5)
 

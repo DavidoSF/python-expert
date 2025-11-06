@@ -16,8 +16,3 @@ class Activity(BaseModel):
     is_indoor: bool
     date: str
     description: Optional[str] = None
-    
-class ActivityVote(BaseModel):
-    user_id: int
-    activity_id: int
-    score: int
