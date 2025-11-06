@@ -15,11 +15,40 @@ DEFAULT_JSON = {
     "user_id": 1,
     "score": 5,
     "name": "AutoTest",
-    "type": "test",
+    # Activity fields
+    "type": "sports",
     "location": "Paris",
     "is_indoor": True,
     "date": "2025-10-21",
-    "description": "Auto-generated test payload"
+    "description": "Auto-generated test payload",
+    # User fields (from User model)
+    "username": "autotestuser",
+    "email": "autotest@example.com",
+    "first_name": "Auto",
+    "last_name": "Test",
+    "birth_date": "1990-01-01",
+    "gender": "other",
+    "phone_number": "+33123456789",
+    "country": "FR",
+    "city": "Paris",
+    "interests": ["sports", "culture"],
+    "activity_preference": "either",
+    "role": "subscriber",
+    "created_at": "2025-01-01T12:00:00Z",
+    "updated_at": "2025-01-02T12:00:00Z",
+    # Vote-related fields
+    "activity_ranking": [1, 2, 3],
+    "activity_scores": [
+        {"user_id": 1, "activity_id": 1, "score": 5},
+        {"user_id": 1, "activity_id": 2, "score": 4}
+    ],
+    # Weather / AirQuality fields
+    "temperature": 18.5,
+    "condition": "Partly Cloudy",
+    "cached": False,
+    "aqi": 42,
+    "category": "Good",
+    "aq_description": "Air quality is good"
 }
 
 SKIP_PREFIXES = ("/user/reset", "/static", "/openapi.json", "/favicon.ico")

@@ -1,4 +1,13 @@
 from typing import List, Optional, Dict, Any
+
+# algorithm:
+# if weather is sunny/clear -> return outdoor activities
+from app.models.db.activity import Activity
+from app.services.ticketmaster_service import fetch_activities as fetch_ticketmaster_activities
+from app.services.weather_service import fetch_weather
+
+# get activities based on weather
+from typing import List, Optional, Dict, Any, Tuple
 from datetime import date as date_class
 
 from app.models.db.activity import Activity, ActivityType
@@ -6,7 +15,7 @@ from app.models.db.user import User
 from app.services.ticketmaster_service import fetch_activities as fetch_ticketmaster_activities
 from app.services.weather_service import fetch_weather
 from app.services.config_service import get_config
-
+from app.services.vote_service import list_votes
 # Load configuration
 config = get_config()
 rec_config = config.get_recommendation_config()
@@ -21,6 +30,7 @@ def get_admin_activities() -> List[Activity]:
     """Get admin-added activities from the admin module."""
     from app.routes.admin import admin_activities
     return admin_activities
+
 
 # Weather condition mappings for flexibility
 OUTDOOR_WEATHER_CONDITIONS = ["clear", "sunny", "partly cloudy", "fair"]
@@ -282,3 +292,67 @@ async def get_weather_recommendation(city: str, date: str) -> Dict[str, Any]:
         recommendation["reasoning"] = f"Unknown weather condition '{weather.condition}', defaulting to indoor activities"
     
     return recommendation
+
+async def fetch_activities_by_weather_ordered_by_votes(
+    city: str,
+    countryCode: str,
+    date: str,
+    user: Optional[User] = None,
+    weather_preference: Optional[str] = "auto",
+    activity_types: Optional[List[ActivityType]] = None,
+    max_results: Optional[int] = None,
+) -> List[Activity]:
+    """
+    Fetch activities filtered by weather conditions and order them by vote count.
+    
+    Args:
+        city: City name
+        countryCode: Country code
+        date: Date in ISO format
+        user: Optional user profile for personalized filtering
+        weather_preference: "auto" (weather-based), "indoor", "outdoor", "all"
+        activity_types: Optional list of activity types to filter by
+        max_results: Optional maximum number of activities to return
+    
+    Returns:
+        List of activities ordered by vote count (most votes first)
+    """
+    # First get the weather-filtered activities
+    activities = await fetch_activities_by_weather(
+        city=city,
+        countryCode=countryCode,
+        date=date,
+        user=user,
+        weather_preference=weather_preference,
+        activity_types=activity_types,
+    )
+
+    if not activities:
+        return []
+
+    # Get all votes
+    votes = list_votes()
+    
+    # Calculate vote counts for each activity
+    activity_votes: Dict[int, int] = {}
+    for activity in activities:
+        vote_count = 0
+        for vote in votes:
+            # Count how many times this activity appears first in rankings
+            rankings = vote.get("activity_ranking", [])
+            if rankings and rankings[0] == activity.id:
+                vote_count += 1
+        activity_votes[activity.id] = vote_count
+
+    # Sort activities by vote count
+    sorted_activities = sorted(
+        activities,
+        key=lambda x: activity_votes.get(x.id, 0),
+        reverse=True  # Most votes first
+    )
+
+    # Apply max results limit if specified
+    if max_results and len(sorted_activities) > max_results:
+        sorted_activities = sorted_activities[:max_results]
+
+    return sorted_activities

@@ -11,7 +11,11 @@ from app.services.weather_service import fetch_weather
 
 router = APIRouter()
 from app.routes.admin import admin_activities
-from app.services.activities_service import fetch_activities_by_weather, get_weather_recommendation
+from app.services.activities_service import (
+    fetch_activities_by_weather,
+    fetch_activities_by_weather_ordered_by_votes,
+    get_weather_recommendation
+)
 
 @router.post("/activities/personalized", response_model=List[Activity])
 async def get_personalized_activities(
@@ -31,6 +35,38 @@ async def get_personalized_activities(
         countryCode=countryCode,
         date=date,
         user=user,
+        max_results=max_results
+    )
+
+@router.get("/activities/by-votes", response_model=List[Activity])
+async def get_activities_by_votes(
+    city: str,
+    countryCode: str,
+    date: str,
+    weather_preference: Optional[str] = "auto",
+    max_results: Optional[int] = 20
+):
+    """
+    Get activities filtered by weather conditions and ordered by vote count.
+    
+    Args:
+        city: City name
+        countryCode: Country code
+        date: Date in ISO format
+        weather_preference: Weather preference ("auto", "indoor", "outdoor", "all")
+        max_results: Maximum number of activities to return
+    
+    Returns:
+        List of activities ordered by vote count (most votes first)
+    """
+    user = get_user(1)  # Get current user for personalization
+    
+    return await fetch_activities_by_weather_ordered_by_votes(
+        city=city,
+        countryCode=countryCode,
+        date=date,
+        user=user,
+        weather_preference=weather_preference,
         max_results=max_results
     )
 
