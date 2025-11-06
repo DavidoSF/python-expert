@@ -14,26 +14,35 @@ from app.routes.admin import admin_activities
 from app.services.activities_service import (
     fetch_activities_by_weather,
     fetch_activities_by_weather_ordered_by_votes,
-    get_weather_recommendation,
-    suggest_personalized_activities
+    get_weather_recommendation
 )
+
+@router.get("/activities", response_model=List[Activity])
+async def get_activities(
+    city: str, 
+    countryCode: str, 
+    date: str
+):
+    """
+    Get all activities for a city and date, optionally filtered by user preferences.
+    """
+    ticketmaster_acts = await fetch_ticketmaster_activities(city, countryCode, date)
+    custom_acts = [a for a in admin_activities if a.location == city and a.date == date]
+        
+    return ticketmaster_acts + custom_acts
 
 @router.post("/activities/personalized", response_model=List[Activity])
 async def get_personalized_activities(
     city: str,
     countryCode: str,
-    date: Optional[str] = "2025-11-06",
-    user_id: Optional[int] = 1,
-    max_results: Optional[int] = 20,
+    date: str,
+    max_results: Optional[int] = 20
 ):
     """
     Get personalized activities based on user profile and weather conditions.
     """
     
-    user = get_user(user_id)
-    
-    if date is None:
-        date = datetime.now().date().isoformat()
+    user = get_user(1)
 
     return await fetch_activities_by_weather(
         city=city,
@@ -43,52 +52,12 @@ async def get_personalized_activities(
         max_results=max_results
     )
 
-@router.get("/activities/recommended", response_model=List[Activity])
-async def get_recommended_activities(
-    city: str,
-    countryCode: str,
-    date: str,
-    user_id: Optional[int] = 1,
-    weather_preference: Optional[str] = "auto",
-    max_results: Optional[int] = 5
-):
-    """
-    Get personalized activity recommendations based on:
-    - Weather conditions
-    - Similar user preferences
-    - User profile and interests
-    - Activity voting history
-    
-    Args:
-        city: City name
-        countryCode: Country code
-        date: Date in ISO format
-        weather_preference: Optional weather preference ("auto", "indoor", "outdoor", "all")
-        max_results: Maximum number of recommendations to return
-    
-    Returns:
-        List of recommended activities ordered by relevance
-    """
-    user = get_user(user_id)
-    
-    recommended = await suggest_personalized_activities(
-        city=city,
-        countryCode=countryCode,
-        date=date,
-        user=user,
-        weather_preference=weather_preference,
-        max_results=max_results
-    )
-    
-    return recommended
-
 @router.get("/activities/by-votes", response_model=List[Activity])
 async def get_activities_by_votes(
     city: str,
     countryCode: str,
     date: str,
     weather_preference: Optional[str] = "auto",
-    user_id: Optional[int] = 1,
     max_results: Optional[int] = 20
 ):
     """
@@ -104,7 +73,7 @@ async def get_activities_by_votes(
     Returns:
         List of activities ordered by vote count (most votes first)
     """
-    user = get_user(user_id) 
+    user = get_user(1)  # Get current user for personalization
     
     return await fetch_activities_by_weather_ordered_by_votes(
         city=city,
@@ -127,7 +96,10 @@ async def get_activities_by_weather(
     """
     Get activities filtered by weather conditions, optionally personalized for a user.
     """
-    user = get_user(user_id) if user_id else None
+    # Use default user if user_id provided (for demo purposes)
+    user = None
+    if user_id:
+        user = get_user(user_id)
     
     activities = await fetch_activities_by_weather(
         city=city,

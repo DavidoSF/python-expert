@@ -1,13 +1,10 @@
+import os
 import httpx
+
 from app.models.response.weather_response import WeatherResponse
-from app.services.config_service import get_config
 
-config = get_config()
-weather_config = config.get_data_source_config('weather')
-
-OPENWEATHERMAP_URL = weather_config.get('base_url', 'https://api.openweathermap.org/data/2.5/weather')
-API_KEY = weather_config.get('api_key', '')
-TIMEOUT = weather_config.get('timeout', 10)
+OPENWEATHERMAP_URL = "https://api.openweathermap.org/data/2.5/weather"
+API_KEY = os.getenv("OPENWEATHER_API_KEY", "b2acb1abb1a3e05cfd68fdb6eb4d95cc")
 
 async def fetch_weather(city: str, date: str) -> WeatherResponse:
     """
@@ -18,7 +15,7 @@ async def fetch_weather(city: str, date: str) -> WeatherResponse:
         "appid": API_KEY,
         "units": "metric"
     }
-    async with httpx.AsyncClient(timeout=TIMEOUT) as client:
+    async with httpx.AsyncClient() as client:
         response = await client.get(OPENWEATHERMAP_URL, params=params)
         data = response.json()
         print('data=', data)

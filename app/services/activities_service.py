@@ -1,75 +1,42 @@
-from typing import List, Optional, Dict, Any
+# get activities based on weather
+from typing import List
 
 # algorithm:
 # if weather is sunny/clear -> return outdoor activities
 from app.models.db.activity import Activity
-from app.services.ticketmaster_service import (
-    fetch_activities as fetch_ticketmaster_activities,
-)
+from app.services.ticketmaster_service import fetch_activities as fetch_ticketmaster_activities
 from app.services.weather_service import fetch_weather
 
 # get activities based on weather
 from typing import List, Optional, Dict, Any, Tuple
 from datetime import date as date_class
 
+# algorithm:
+# if weather is sunny/clear -> return outdoor activities
 from app.models.db.activity import Activity, ActivityType
 from app.models.db.user import User
-from app.services.ticketmaster_service import (
-    fetch_activities as fetch_ticketmaster_activities,
-)
+from app.services.ticketmaster_service import fetch_activities as fetch_ticketmaster_activities
 from app.services.weather_service import fetch_weather
-from app.services.config_service import get_config
 from app.services.vote_service import list_votes
 
-config = get_config()
-rec_config = config.get_recommendation_config()
-
-OUTDOOR_WEATHER_CONDITIONS = rec_config.get(
-    "outdoor_conditions", ["clear", "sunny", "partly cloudy", "fair"]
-)
-INDOOR_WEATHER_CONDITIONS = rec_config.get(
-    "indoor_conditions",
-    ["rain", "snow", "thunderstorm", "drizzle", "cloudy", "overcast", "fog", "mist"],
-)
-CONFIDENCE_THRESHOLD = rec_config.get("confidence_threshold", 0.7)
-
-
-def get_admin_activities() -> List[Activity]:
-    """Get admin-added activities from the admin module."""
-    from app.routes.admin import admin_activities
-
-    return admin_activities
-
-
-from app.services.recommendation_service import get_collaborative_recommendations
-
+# Weather condition mappings for flexibility
 OUTDOOR_WEATHER_CONDITIONS = ["clear", "sunny", "partly cloudy", "fair"]
-INDOOR_WEATHER_CONDITIONS = [
-    "rain",
-    "snow",
-    "thunderstorm",
-    "drizzle",
-    "cloudy",
-    "overcast",
-    "fog",
-    "mist",
-]
-
+INDOOR_WEATHER_CONDITIONS = ["rain", "snow", "thunderstorm", "drizzle", "cloudy", "overcast", "fog", "mist"]
 
 async def fetch_activities_by_weather(
-    city: str,
-    countryCode: str,
+    city: str, 
+    countryCode: str, 
     date: str,
-    user: Optional[User] = None,
+    user: Optional[User] = None,  # User profile for personalized filtering
     weather_preference: Optional[str] = "auto",  # "auto", "indoor", "outdoor", "all"
-    activity_types: Optional[List[ActivityType]] = None,
-    max_results: Optional[int] = None,
-    custom_weather_mapping: Optional[Dict[str, str]] = None,
+    activity_types: Optional[List[ActivityType]] = None,  # Filter by activity types
+    max_results: Optional[int] = None,  # Limit number of results
+    custom_weather_mapping: Optional[Dict[str, str]] = None,  # Custom weather -> preference mapping
     temperature_range: Optional[tuple] = None,  # (min_temp, max_temp) for filtering
 ) -> List[Activity]:
     """
     Fetch activities filtered by weather conditions and user preferences.
-
+    
     Args:
         city: City name
         countryCode: Country code
@@ -80,36 +47,29 @@ async def fetch_activities_by_weather(
         max_results: Maximum number of activities to return
         custom_weather_mapping: Custom mapping of weather conditions to preferences
         temperature_range: Tuple of (min_temp, max_temp) for temperature filtering
-
+    
     Returns:
         List of filtered activities
     """
     weather = await fetch_weather(city, date)
     activities = await fetch_ticketmaster_activities(city, countryCode, date)
-
-    admin_acts = get_admin_activities()
-    custom_acts = [
-        a
-        for a in admin_acts
-        if getattr(a, "location", None) == city and getattr(a, "date", None) == date
-    ]
-    activities.extend(custom_acts)
-
     print("activities: ", activities)
     print("user: ", user)
-    if temperature_range and hasattr(weather, "temperature"):
+    # Apply temperature filtering if specified
+    if temperature_range and hasattr(weather, 'temperature'):
         min_temp, max_temp = temperature_range
         if not (min_temp <= weather.temperature <= max_temp):
-            return []
+            return []  # No activities if temperature is out of range
 
+    # Determine weather preference based on user or override
     if weather_preference == "auto":
+        # Check user's activity preference first
         if user and user.activity_preference and user.activity_preference != "either":
             preference = user.activity_preference
         else:
+            # Use custom mapping if provided, otherwise use default logic
             if custom_weather_mapping:
-                preference = custom_weather_mapping.get(
-                    weather.condition.lower(), "indoor"
-                )
+                preference = custom_weather_mapping.get(weather.condition.lower(), "indoor")
             else:
                 preference = "all"
                 # if weather.condition.lower() in OUTDOOR_WEATHER_CONDITIONS:
@@ -121,64 +81,70 @@ async def fetch_activities_by_weather(
     else:
         preference = weather_preference
     print("USER PREFERENCE: ", preference)
+    # Determine activity types to filter by
     if activity_types is None and user and user.interests:
+        # Map user interests to activity types
         activity_types = _map_interests_to_activity_types(user.interests)
 
     print("activitiy_types: ", activity_types)
+    # Calculate user age for age-appropriate filtering
     user_age = None
     if user and user.birth_date:
         today = date_class.today()
-        user_age = (
-            today.year
-            - user.birth_date.year
-            - ((today.month, today.day) < (user.birth_date.month, user.birth_date.day))
-        )
+        user_age = today.year - user.birth_date.year - ((today.month, today.day) < (user.birth_date.month, user.birth_date.day))
 
     print("Age: ", user_age)
     filtered_activities = []
-
+    
     for activity in activities:
+        # Apply activity type filtering
         if activity_types and activity.type not in activity_types:
             print("print 1")
             continue
-
+            
+        # Apply weather-based filtering
         if preference == "all":
             print("print 2")
-            pass
+            pass  # Include all activities
         elif preference == "outdoor":
             if activity.is_indoor:
-                continue
+                continue  # Skip indoor activities
         elif preference == "indoor":
             print("in door")
             if not activity.is_indoor:
                 print("Skipping")
-                continue
+                continue  # Skip outdoor activities
 
+        # Apply user-specific filtering
         if user:
+            # Age-based filtering (example: some activities might not be suitable for certain ages)
             if user_age is not None:
                 if not _is_age_appropriate(activity, user_age):
                     continue
-
+            
+            # Gender-based filtering (if activity has gender preferences)
             if user.gender:
                 if not _is_gender_appropriate(activity, user.gender):
                     continue
-
+            
+            # Location preference (if user prefers activities in their city)
             if user.city and user.city.lower() != city.lower():
+                # User prefers activities in their home city, but we're searching elsewhere
+                # This is just an example - you might want different logic
                 pass
 
         filtered_activities.append(activity)
 
     print("filtered_activities: ", filtered_activities)
+    # Apply personalized scoring and sorting
     if user:
-        filtered_activities = _score_and_sort_activities(
-            filtered_activities, user, weather
-        )
+        filtered_activities = _score_and_sort_activities(filtered_activities, user, weather)
 
+    # Apply max results limit
     if max_results and len(filtered_activities) > max_results:
         filtered_activities = filtered_activities[:max_results]
 
     return filtered_activities
-
 
 def _map_interests_to_activity_types(interests: List[str]) -> List[ActivityType]:
     """Map user interests to ActivityType enums."""
@@ -199,122 +165,114 @@ def _map_interests_to_activity_types(interests: List[str]) -> List[ActivityType]
         "cultural": ActivityType.cultural,
         "hiking": ActivityType.sports,
     }
-
+    
     mapped_types = []
     for interest in interests:
         if interest.lower() in interest_mapping:
             activity_type = interest_mapping[interest.lower()]
             if activity_type not in mapped_types:
                 mapped_types.append(activity_type)
-
+    
+    # If no specific mapping found, include all types
     return mapped_types if mapped_types else list(ActivityType)
-
 
 def _is_age_appropriate(activity: Activity, age: int) -> bool:
     """Check if activity is appropriate for user's age."""
+    # Example logic - you can expand this based on activity content
     if age < 13:
+        # Child-friendly activities only
         return "family" in activity.name.lower() or "kids" in activity.name.lower()
     elif age < 18:
+        # Teen-appropriate activities
         excluded_keywords = ["casino", "bar", "nightclub", "adult"]
-        return not any(
-            keyword in activity.name.lower() for keyword in excluded_keywords
-        )
+        return not any(keyword in activity.name.lower() for keyword in excluded_keywords)
     else:
+        # Adults can attend most activities
         return True
-
 
 def _is_gender_appropriate(activity: Activity, gender: str) -> bool:
     """Check if activity matches gender preferences (if any)."""
-
+    # Most activities are gender-neutral, but some might have specific audiences
+    # This is a basic example - you might want more sophisticated logic
+    
+    # For now, assume all activities are appropriate for all genders
+    # You could add specific filtering based on activity content/description
     return True
 
-
-def _score_and_sort_activities(
-    activities: List[Activity], user: User, weather
-) -> List[Activity]:
+def _score_and_sort_activities(activities: List[Activity], user: User, weather) -> List[Activity]:
     """Score and sort activities based on user preferences and context."""
     scored_activities = []
-
+    
     for activity in activities:
         score = 0.0
-
+        
+        # Base score
         score += 1.0
-
+        
+        # Interest-based scoring
         if user.interests:
             for interest in user.interests:
-                if (
-                    interest.lower() in activity.name.lower()
-                    or interest.lower() in (activity.description or "").lower()
-                ):
+                if interest.lower() in activity.name.lower() or \
+                   interest.lower() in (activity.description or "").lower():
                     score += 2.0
-
+        
+        # Activity type preference scoring
         user_activity_types = _map_interests_to_activity_types(user.interests or [])
         if activity.type in user_activity_types:
             score += 1.5
-
+        
+        # Weather appropriateness scoring
         if user.activity_preference == "outdoor" and not activity.is_indoor:
             score += 1.0
         elif user.activity_preference == "indoor" and activity.is_indoor:
             score += 1.0
-
+        
+        # Location preference
         if user.city and user.city.lower() == activity.location.lower():
             score += 0.5
-
+        
         scored_activities.append((score, activity))
-
+    
+    # Sort by score (highest first)
     scored_activities.sort(key=lambda x: x[0], reverse=True)
-
+    
     return [activity for score, activity in scored_activities]
-
 
 async def get_weather_recommendation(city: str, date: str) -> Dict[str, Any]:
     """
     Get weather-based activity recommendations with metadata.
-
+    
     Returns:
         Dict containing weather info and recommendations
     """
     weather = await fetch_weather(city, date)
-
+    
     recommendation = {
         "weather": {
             "condition": weather.condition,
-            "temperature": getattr(weather, "temperature", None),
+            "temperature": getattr(weather, 'temperature', None),
         },
         "recommended_preference": None,
         "confidence": 0.0,
-        "reasoning": "",
+        "reasoning": ""
     }
-
+    
     condition_lower = weather.condition.lower()
-
+    
     if condition_lower in OUTDOOR_WEATHER_CONDITIONS:
         recommendation["recommended_preference"] = "outdoor"
-        recommendation["confidence"] = (
-            0.8 if "clear" in condition_lower or "sunny" in condition_lower else 0.6
-        )
-        recommendation["reasoning"] = (
-            f"Weather is {weather.condition}, suitable for outdoor activities"
-        )
+        recommendation["confidence"] = 0.8 if "clear" in condition_lower or "sunny" in condition_lower else 0.6
+        recommendation["reasoning"] = f"Weather is {weather.condition}, suitable for outdoor activities"
     elif condition_lower in INDOOR_WEATHER_CONDITIONS:
         recommendation["recommended_preference"] = "indoor"
-        recommendation["confidence"] = (
-            0.9
-            if any(bad in condition_lower for bad in ["rain", "storm", "snow"])
-            else 0.7
-        )
-        recommendation["reasoning"] = (
-            f"Weather is {weather.condition}, better to stay indoors"
-        )
+        recommendation["confidence"] = 0.9 if any(bad in condition_lower for bad in ["rain", "storm", "snow"]) else 0.7
+        recommendation["reasoning"] = f"Weather is {weather.condition}, better to stay indoors"
     else:
         recommendation["recommended_preference"] = "indoor"
         recommendation["confidence"] = 0.5
-        recommendation["reasoning"] = (
-            f"Unknown weather condition '{weather.condition}', defaulting to indoor activities"
-        )
-
+        recommendation["reasoning"] = f"Unknown weather condition '{weather.condition}', defaulting to indoor activities"
+    
     return recommendation
-
 
 async def fetch_activities_by_weather_ordered_by_votes(
     city: str,
@@ -327,7 +285,7 @@ async def fetch_activities_by_weather_ordered_by_votes(
 ) -> List[Activity]:
     """
     Fetch activities filtered by weather conditions and order them by vote count.
-
+    
     Args:
         city: City name
         countryCode: Country code
@@ -336,10 +294,11 @@ async def fetch_activities_by_weather_ordered_by_votes(
         weather_preference: "auto" (weather-based), "indoor", "outdoor", "all"
         activity_types: Optional list of activity types to filter by
         max_results: Optional maximum number of activities to return
-
+    
     Returns:
         List of activities ordered by vote count (most votes first)
     """
+    # First get the weather-filtered activities
     activities = await fetch_activities_by_weather(
         city=city,
         countryCode=countryCode,
@@ -352,82 +311,29 @@ async def fetch_activities_by_weather_ordered_by_votes(
     if not activities:
         return []
 
+    # Get all votes
     votes = list_votes()
-    print("All votes: ", votes)
-
-    activity_scores: Dict[int, Tuple[float, int]] = {}
+    
+    # Calculate vote counts for each activity
+    activity_votes: Dict[int, int] = {}
     for activity in activities:
-        activity_votes_list = [v for v in votes if v.get("activity_id") == activity.id]
-        if activity_votes_list:
-            avg_score = sum(v.get("score", 0) for v in activity_votes_list) / len(
-                activity_votes_list
-            )
-            vote_count = len(activity_votes_list)
-            activity_scores[activity.id] = (avg_score, vote_count)
-        else:
-            activity_scores[activity.id] = (0.0, 0)
+        vote_count = 0
+        for vote in votes:
+            # Count how many times this activity appears first in rankings
+            rankings = vote.get("activity_ranking", [])
+            if rankings and rankings[0] == activity.id:
+                vote_count += 1
+        activity_votes[activity.id] = vote_count
 
+    # Sort activities by vote count
     sorted_activities = sorted(
         activities,
-        key=lambda x: (
-            activity_scores.get(x.id, (0.0, 0))[0],
-            activity_scores.get(x.id, (0.0, 0))[1],
-        ),
-        reverse=True,
+        key=lambda x: activity_votes.get(x.id, 0),
+        reverse=True  # Most votes first
     )
 
+    # Apply max results limit if specified
     if max_results and len(sorted_activities) > max_results:
         sorted_activities = sorted_activities[:max_results]
 
     return sorted_activities
-
-
-async def suggest_personalized_activities(
-    city: str,
-    countryCode: str,
-    date: str,
-    user: User,
-    weather_preference: Optional[str] = "auto",
-    max_results: Optional[int] = 5,
-) -> List[Activity]:
-    """
-    Suggest activities based on weather, user similarity, and collaborative filtering.
-
-    This function combines:
-    1. Weather-appropriate activities filtering
-    2. Similar user preferences (collaborative filtering)
-    3. Personal activity history and voting patterns
-
-    Args:
-        city: City name
-        countryCode: Country code
-        date: Date in ISO format
-        user: User to get recommendations for
-        weather_preference: Weather preference override
-        max_results: Maximum number of activities to return
-
-    Returns:
-        List of recommended activities ordered by relevance
-    """
-    weather_filtered = await fetch_activities_by_weather(
-        city=city,
-        countryCode=countryCode,
-        date=date,
-        user=user,
-        weather_preference=weather_preference,
-    )
-
-    if not weather_filtered:
-        return []
-
-    print("Weather filtered activities: ", weather_filtered)
-
-    recommendations = get_collaborative_recommendations(
-        user=user, current_activities=weather_filtered, max_recommendations=max_results
-    )
-
-    print("recommendations: ", recommendations)
-
-    recommended_activities = [activity for activity, score in recommendations]
-
-    return recommended_activities
