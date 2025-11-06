@@ -1,11 +1,16 @@
-import os
 import httpx
 from typing import List
-
 from app.models.db.activity import Activity, ActivityType
+from app.services.config_service import get_config
 
-TICKETMASTER_URL = "https://app.ticketmaster.com/discovery/v2/events.json"
-API_KEY = os.getenv("TICKETMASTER_API_KEY", "Xkpv1HdAKWlmbtOPwqOpRv7RRDgUOtZU")
+# Load configuration
+config = get_config()
+events_config = config.get_data_source_config('events')
+
+TICKETMASTER_URL = events_config.get('base_url', 'https://app.ticketmaster.com/discovery/v2/events.json')
+API_KEY = events_config.get('api_key', '')
+TIMEOUT = events_config.get('timeout', 10)
+MAX_RESULTS = events_config.get('max_results', 100)
 
 def _map_event_to_activity(event, date: str) -> Activity:
     print("dates: ", event.get("dates", {}))
@@ -36,11 +41,11 @@ async def fetch_activities(city: str, countryCode: str, date: str) -> List[Activ
         "endDateTime": f"{date}T23:59:59Z",
         "includeTBD": "yes",
         "includeTBA": "yes",
-        "size": 10,
+        "size": min(10, MAX_RESULTS),
         "keyword": city
         # "city": city
     }
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=TIMEOUT) as client:
         response = await client.get(TICKETMASTER_URL, params=params)
         data = response.json()
         events = data.get("_embedded", {}).get("events", [])

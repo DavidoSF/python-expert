@@ -1,22 +1,26 @@
-# get activities based on weather
-from typing import List
-
-# algorithm:
-# if weather is sunny/clear -> return outdoor activities
-from app.models.db.activity import Activity
-from app.services.ticketmaster_service import fetch_activities as fetch_ticketmaster_activities
-from app.services.weather_service import fetch_weather
-
-# get activities based on weather
 from typing import List, Optional, Dict, Any
 from datetime import date as date_class
 
-# algorithm:
-# if weather is sunny/clear -> return outdoor activities
 from app.models.db.activity import Activity, ActivityType
 from app.models.db.user import User
 from app.services.ticketmaster_service import fetch_activities as fetch_ticketmaster_activities
 from app.services.weather_service import fetch_weather
+from app.services.config_service import get_config
+
+# Load configuration
+config = get_config()
+rec_config = config.get_recommendation_config()
+
+# Weather condition mappings from configuration
+OUTDOOR_WEATHER_CONDITIONS = rec_config.get('outdoor_conditions', ["clear", "sunny", "partly cloudy", "fair"])
+INDOOR_WEATHER_CONDITIONS = rec_config.get('indoor_conditions', ["rain", "snow", "thunderstorm", "drizzle", "cloudy", "overcast", "fog", "mist"])
+CONFIDENCE_THRESHOLD = rec_config.get('confidence_threshold', 0.7)
+
+
+def get_admin_activities() -> List[Activity]:
+    """Get admin-added activities from the admin module."""
+    from app.routes.admin import admin_activities
+    return admin_activities
 
 # Weather condition mappings for flexibility
 OUTDOOR_WEATHER_CONDITIONS = ["clear", "sunny", "partly cloudy", "fair"]
@@ -52,6 +56,12 @@ async def fetch_activities_by_weather(
     """
     weather = await fetch_weather(city, date)
     activities = await fetch_ticketmaster_activities(city, countryCode, date)
+    
+    # Include admin-added activities for the same city and date
+    admin_acts = get_admin_activities()
+    custom_acts = [a for a in admin_acts if getattr(a, "location", None) == city and getattr(a, "date", None) == date]
+    activities.extend(custom_acts)
+    
     print("activities: ", activities)
     print("user: ", user)
     # Apply temperature filtering if specified

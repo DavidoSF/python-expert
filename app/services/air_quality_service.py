@@ -1,10 +1,14 @@
-import os
 import httpx
+from app.models.db.weather import AirQuality
+from app.services.config_service import get_config
 
-from app.models.db.weather import AirQuality 
+# Load configuration
+config = get_config()
+air_quality_config = config.get_data_source_config('air_quality')
 
-OPENAQ_URL = "https://api.waqi.info/feed"
-API_KEY = os.getenv("WAQI_API_KEY", "4385c71a243e9820e4003eeadd7dce12bc267f19")
+OPENAQ_URL = air_quality_config.get('base_url', 'https://api.waqi.info/feed')
+API_KEY = air_quality_config.get('api_key', '')
+TIMEOUT = air_quality_config.get('timeout', 10)
 
 def get_aqi_category(aqi: int) -> str:
     """Return AQI category based on standard AQI ranges"""
@@ -27,7 +31,7 @@ async def fetch_air_quality(city: str, date: str, country: str = None) -> AirQua
     url = f"{OPENAQ_URL}/{city_query}/"
     params = {"token": API_KEY}
     
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=TIMEOUT) as client:
         response = await client.get(url, params=params)
         data = response.json()
         

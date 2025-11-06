@@ -3,13 +3,15 @@ from app.main import app
 
 def test_vote_for_activities():
     client = TestClient(app)
-    votes = [
-        {"activity_id": 1, "user_id": 1, "score": 5},
-        {"activity_id": 2, "user_id": 1, "score": 3}
-    ]
-    response = client.post("/vote", json=votes)
-    assert response.status_code == 200
+    vote = {
+        "user_id": 1,
+        "activity_ranking": [2, 1, 3],  # Ranked list: activity 2 is first choice, 1 is second, 3 is third
+        "activity_scores": [
+            {"activity_id": 1, "user_id": 1, "score": 5},
+            {"activity_id": 2, "user_id": 1, "score": 3}
+        ]
+    }
+    response = client.post("/vote/", json=vote)
+    assert response.status_code == 201
     data = response.json()
-    assert isinstance(data, list)
-    assert data[0]["activity_id"] == 1
-    assert data[1]["score"] == 3
+    assert data["status"] == "ok"
