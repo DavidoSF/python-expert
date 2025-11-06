@@ -1,0 +1,67 @@
+/* Custom styles for the Weather Activity API documentation */
+
+.wy-nav-content-wrap {
+    background: #fcfcfc;
+}
+
+.wy-nav-content {
+    max-width: none;
+}
+
+/* Enhanced code blocks */
+.highlight {
+    border-radius: 4px;
+    border: 1px solid #e1e4e5;
+}
+
+/* Better spacing for API documentation */
+.autoapi-section {
+    margin-bottom: 2em;
+}
+
+/* Improved method signatures */
+dt.sig {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+}
+
+/* Better parameter lists */
+.field-list {
+    margin-bottom: 1em;
+}
+
+.field-list dt {
+    font-weight: bold;
+    color: #2980B9;
+}
+
+/* Enhanced navigation */
+.wy-menu-vertical a {
+    color: #404040;
+}
+
+.wy-menu-vertical a:hover {
+    background-color: #e3f2fd;
+    color: #2980B9;
+}
+
+/* Custom admonitions */
+.admonition {
+    border-radius: 4px;
+    border-left: 4px solid #2980B9;
+}
+
+.admonition.note {
+    border-left-color: #17a2b8;
+}
+
+.admonition.warning {
+    border-left-color: #ffc107;
+}
+
+.admonition.error {
+    border-left-color: #dc3545;
+}

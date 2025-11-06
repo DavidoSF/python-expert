@@ -1,0 +1,21 @@
+app.routes
+==========
+
+.. py:module:: app.routes
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/app/routes/activities/index
+   /autoapi/app/routes/admin/index
+   /autoapi/app/routes/air_quality/index
+   /autoapi/app/routes/user/index
+   /autoapi/app/routes/users/index
+   /autoapi/app/routes/vote/index
+   /autoapi/app/routes/weather/index
+
+

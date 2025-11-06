@@ -1,0 +1,56 @@
+user_service
+============
+
+.. py:module:: user_service
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   user_service.DATA_PATH
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   user_service.create_user
+   user_service.delete_user
+   user_service.get_user_by_id
+   user_service.list_users
+   user_service.reset_store
+   user_service.update_user
+
+
+Module Contents
+---------------
+
+.. py:function:: create_user(user_data: Dict[str, Any]) -> Dict[str, Any]
+
+   Create a new user in the in-memory store. Does NOT modify the original JSON file.
+
+
+.. py:function:: delete_user(user_id: int) -> bool
+
+   Delete a user from the in-memory store. Returns True if deleted.
+
+
+.. py:function:: get_user_by_id(user_id: int) -> Optional[Dict[str, Any]]
+
+.. py:function:: list_users() -> List[Dict[str, Any]]
+
+.. py:function:: reset_store() -> None
+
+   Reset the in-memory store back to the initial JSON contents.
+
+
+.. py:function:: update_user(user_id: int, updates: Dict[str, Any]) -> Optional[Dict[str, Any]]
+
+   Update fields for an existing user. Returns updated user or None if not found.
+
+
+.. py:data:: DATA_PATH
+

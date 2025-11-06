@@ -1,0 +1,46 @@
+test_dynamic
+============
+
+.. py:module:: test_dynamic
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   test_dynamic.DEFAULT_JSON
+   test_dynamic.DEFAULT_QUERY
+   test_dynamic.ROUTE_OVERRIDES
+   test_dynamic.SKIP_PREFIXES
+   test_dynamic.client
+   test_dynamic.path
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_dynamic.test_route_responsive
+
+
+Module Contents
+---------------
+
+.. py:function:: test_route_responsive(route, method)
+
+.. py:data:: DEFAULT_JSON
+
+.. py:data:: DEFAULT_QUERY
+
+.. py:data:: ROUTE_OVERRIDES
+
+.. py:data:: SKIP_PREFIXES
+   :value: ('/user/reset', '/static', '/openapi.json', '/favicon.ico')
+
+
+.. py:data:: client
+
+.. py:data:: path
+

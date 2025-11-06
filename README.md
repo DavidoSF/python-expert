@@ -217,3 +217,8 @@ tests/                     # Test suite
 - Admin access requires proper user role (use user_id of administrator)
 - Voting system supports per-activity votes; Condorcet ranking planned
 
+
+run sphinx:
+
+sphinx-build -b html source _build/html
+python -m http.server 8080

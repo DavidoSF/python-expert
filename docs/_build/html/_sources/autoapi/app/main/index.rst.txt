@@ -1,0 +1,19 @@
+app.main
+========
+
+.. py:module:: app.main
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.main.app
+
+
+Module Contents
+---------------
+
+.. py:data:: app
+
