@@ -16,3 +16,11 @@ app.include_router(users_router)
 app.include_router(admin_router)
 app.include_router(user_router)
 app.include_router(air_quality_router)
+
+def read_root() -> dict:
+    """Get a welcome message.
+
+    Returns:
+        dict: A JSON response containing a welcome message.
+    """
+    return {"message": "Hello World"}
