@@ -1,6 +1,7 @@
 uvicorn
 fastapi
 httpx
+pyyaml
 
 # Documentation
 sphinx>=4.0.0
