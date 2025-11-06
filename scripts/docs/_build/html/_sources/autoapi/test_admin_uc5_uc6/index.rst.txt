@@ -1,0 +1,62 @@
+test_admin_uc5_uc6
+==================
+
+.. py:module:: test_admin_uc5_uc6
+
+.. autoapi-nested-parse::
+
+   Test UC5: Administrator enriching activity listings
+   Test UC6: Configuration management
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   test_admin_uc5_uc6.client
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_admin_uc5_uc6.test_admin_add_custom_activity
+   test_admin_uc5_uc6.test_admin_list_activities_requires_admin
+   test_admin_uc5_uc6.test_admin_list_activities_with_admin_user
+   test_admin_uc5_uc6.test_admin_view_configuration
+   test_admin_uc5_uc6.test_config_view_requires_admin
+
+
+Module Contents
+---------------
+
+.. py:function:: test_admin_add_custom_activity()
+
+   UC5: Admin can add custom activities to enrich listings.
+
+
+.. py:function:: test_admin_list_activities_requires_admin()
+
+   UC5: Admin activities endpoint requires administrator role.
+
+
+.. py:function:: test_admin_list_activities_with_admin_user()
+
+   UC5: Admin can list combined Ticketmaster + custom activities.
+
+
+.. py:function:: test_admin_view_configuration()
+
+   UC6: Admin can view application configuration.
+
+
+.. py:function:: test_config_view_requires_admin()
+
+   UC6: Configuration endpoint requires administrator role.
+
+
+.. py:data:: client
+

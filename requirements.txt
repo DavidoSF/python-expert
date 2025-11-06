@@ -2,3 +2,9 @@ uvicorn
 fastapi
 httpx
 pyyaml
+
+# Documentation dependencies
+sphinx
+sphinx-rtd-theme
+sphinx-autoapi
+myst-parser

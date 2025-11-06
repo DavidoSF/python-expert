@@ -1,0 +1,71 @@
+app.routes.admin
+================
+
+.. py:module:: app.routes.admin
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.admin.ACTIVITIES_FILE
+   app.routes.admin.admin_activities
+   app.routes.admin.router
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   app.routes.admin.add_activity
+   app.routes.admin.get_configuration
+   app.routes.admin.list_activities
+   app.routes.admin.list_admin_activities
+
+
+Module Contents
+---------------
+
+.. py:function:: add_activity(activity: app.models.db.activity.Activity)
+
+.. py:function:: get_configuration(admin_user_id: int)
+
+   View current application configuration.
+
+   Requires administrator privileges. Returns the full configuration including
+   data source settings, recommendation parameters, etc.
+
+   UC6: View configuration management.
+
+
+.. py:function:: list_activities(admin_user_id: int)
+   :async:
+
+
+   Return all admin-added activities.
+
+   This endpoint requires the requesting user to be an administrator. For demo purposes
+   the caller must supply `admin_user_id` (in production use proper auth).
+
+
+.. py:function:: list_admin_activities(city: str, countryCode: str, date: str, admin_user_id: int)
+   :async:
+
+
+   Return combined Ticketmaster events and admin-added activities for a city/date.
+
+   This endpoint requires the requesting user to be an administrator. For demo purposes
+   the caller must supply `admin_user_id` (in production use proper auth).
+
+
+.. py:data:: ACTIVITIES_FILE
+
+.. py:data:: admin_activities
+   :type:  List[app.models.db.activity.Activity]
+   :value: []
+
+
+.. py:data:: router
+

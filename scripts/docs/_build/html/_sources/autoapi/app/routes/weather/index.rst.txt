@@ -1,0 +1,31 @@
+app.routes.weather
+==================
+
+.. py:module:: app.routes.weather
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.weather.router
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   app.routes.weather.get_weather
+
+
+Module Contents
+---------------
+
+.. py:function:: get_weather(city: str, date: str)
+   :async:
+
+
+.. py:data:: router
+

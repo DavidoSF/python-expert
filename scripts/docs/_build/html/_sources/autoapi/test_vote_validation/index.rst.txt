@@ -1,0 +1,67 @@
+test_vote_validation
+====================
+
+.. py:module:: test_vote_validation
+
+.. autoapi-nested-parse::
+
+   Tests for vote validation - ensuring votes only accepted for existing activities.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   test_vote_validation.client
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_vote_validation.reset_votes
+   test_vote_validation.setup_admin_activities
+   test_vote_validation.test_vote_for_existing_admin_activity
+   test_vote_validation.test_vote_for_nonexistent_activity
+   test_vote_validation.test_vote_mixed_existing_and_nonexistent
+   test_vote_validation.test_vote_multiple_existing_activities
+
+
+Module Contents
+---------------
+
+.. py:function:: reset_votes()
+
+   Clear votes before each test.
+
+
+.. py:function:: setup_admin_activities()
+
+   Ensure we have at least one admin activity for testing.
+
+
+.. py:function:: test_vote_for_existing_admin_activity()
+
+   Test that voting for an existing admin activity succeeds.
+
+
+.. py:function:: test_vote_for_nonexistent_activity()
+
+   Test that voting for a non-existent activity returns 404.
+
+
+.. py:function:: test_vote_mixed_existing_and_nonexistent()
+
+   Test that voting with a mix of existing and non-existing activities fails.
+
+
+.. py:function:: test_vote_multiple_existing_activities()
+
+   Test voting for multiple existing admin activities.
+
+
+.. py:data:: client
+

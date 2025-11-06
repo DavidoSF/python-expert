@@ -1,0 +1,62 @@
+app.routes.vote
+===============
+
+.. py:module:: app.routes.vote
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.vote.router
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   app.routes.vote.get_activity_ranking
+   app.routes.vote.get_activity_votes
+   app.routes.vote.list_votes
+   app.routes.vote.submit_vote
+
+
+Module Contents
+---------------
+
+.. py:function:: get_activity_ranking()
+
+   Get activities ranked by average score.
+
+
+.. py:function:: get_activity_votes(activity_id: int)
+
+   Get all votes for a specific activity with average score.
+
+
+.. py:function:: list_votes()
+
+   List all recorded votes.
+
+
+.. py:function:: submit_vote(vote: app.models.db.vote.Vote = Body(...))
+
+   Submit votes for one or more activities.
+
+   Example:
+   {
+     "votes": [
+       {"user_id": 1, "activity_id": 5, "score": 9},
+       {"user_id": 1, "activity_id": 3, "score": 7}
+     ]
+   }
+
+   Score range: 1-10 (10 = best)
+   Cannot vote for the same activity twice in one submission.
+   Activities must exist (admin activities only for now).
+
+
+.. py:data:: router
+
