@@ -20,7 +20,7 @@ DEFAULT_JSON = {
     "location": "Paris",
     "is_indoor": True,
     "date": "2025-10-21",
-    "description": "Auto-generated test payload",
+    "description": "Auto-generated test payload with multiple activities",
     # User fields (from User model)
     "username": "autotestuser",
     "email": "autotest@example.com",
@@ -31,8 +31,34 @@ DEFAULT_JSON = {
     "phone_number": "+33123456789",
     "country": "FR",
     "city": "Paris",
-    "interests": ["sports", "culture"],
+    "interests": ["sports", "culture", "music", "art", "theater"],
     "activity_preference": "either",
+    # Test data for recommendations
+    "similar_users": [
+        {
+            "id": 2,
+            "username": "similar_user1",
+            "interests": ["sports", "music"],
+            "birth_date": "1992-01-01",
+            "gender": "other",
+            "city": "Paris",
+            "activity_preference": "outdoor"
+        },
+        {
+            "id": 3,
+            "username": "similar_user2",
+            "interests": ["art", "culture"],
+            "birth_date": "1988-01-01",
+            "gender": "other",
+            "city": "Paris",
+            "activity_preference": "indoor"
+        }
+    ],
+    "activity_history": [
+        {"activity_id": 1, "date": "2025-10-01", "rating": 5},
+        {"activity_id": 2, "date": "2025-10-05", "rating": 4},
+        {"activity_id": 3, "date": "2025-10-10", "rating": 3}
+    ],
     "role": "subscriber",
     "created_at": "2025-01-01T12:00:00Z",
     "updated_at": "2025-01-02T12:00:00Z",
