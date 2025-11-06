@@ -48,6 +48,7 @@ async def get_recommended_activities(
     city: str,
     countryCode: str,
     date: str,
+    user_id: Optional[int] = 1,
     weather_preference: Optional[str] = "auto",
     max_results: Optional[int] = 5
 ):
@@ -68,7 +69,7 @@ async def get_recommended_activities(
     Returns:
         List of recommended activities ordered by relevance
     """
-    user = get_user(1)  # Already returns a User object
+    user = get_user(user_id)
     
     recommended = await suggest_personalized_activities(
         city=city,
@@ -103,7 +104,7 @@ async def get_activities_by_votes(
     Returns:
         List of activities ordered by vote count (most votes first)
     """
-    user = get_user(user_id)  # Get current user for personalization
+    user = get_user(user_id) 
     
     return await fetch_activities_by_weather_ordered_by_votes(
         city=city,
@@ -126,7 +127,6 @@ async def get_activities_by_weather(
     """
     Get activities filtered by weather conditions, optionally personalized for a user.
     """
-    # Use default user if user_id provided (for demo purposes)
     user = get_user(user_id) if user_id else None
     
     activities = await fetch_activities_by_weather(

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 100,
+    "name": "Paris Jazz Night",
+    "type": "cultural",
+    "location": "Paris",
+    "is_indoor": true,
+    "date": "2025-11-15",
+    "description": "Live jazz performance at La Seine Musicale featuring local and international artists"
+  },
+  {
+    "id": 101,
+    "name": "Outdoor Yoga in Jardin du Luxembourg",
+    "type": "sports",
+    "location": "Paris",
+    "is_indoor": false,
+    "date": "2025-11-15",
+    "description": "Morning yoga session in the beautiful Luxembourg Gardens. All levels welcome!"
+  },
+  {
+    "id": 102,
+    "name": "Community Food Market",
+    "type": "community",
+    "location": "Paris",
+    "is_indoor": false,
+    "date": "2025-11-15",
+    "description": "Local farmers and artisans market with fresh produce, crafts, and street food"
+  },
+  {
+    "id": 103,
+    "name": "Cinema Classics: French New Wave",
+    "type": "cultural",
+    "location": "Paris",
+    "is_indoor": true,
+    "date": "2025-11-15",
+    "description": "Screening of classic French cinema at Le Champo. This week: 'Breathless' by Godard"
+  }
+]

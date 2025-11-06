@@ -6,28 +6,26 @@ app:
   version: "1.0.0"
   debug: false
 
-# External API data sources
 data_sources:
   weather:
     provider: "OpenWeatherMap"
     base_url: "https://api.openweathermap.org/data/2.5/weather"
-    api_key: "b2acb1abb1a3e05cfd68fdb6eb4d95cc"  # Default demo key, override via env var OPENWEATHER_API_KEY
+    api_key: "b2acb1abb1a3e05cfd68fdb6eb4d95cc" 
     timeout: 10
     
   air_quality:
     provider: "WAQI"
     base_url: "https://api.waqi.info/feed"
-    api_key: "4385c71a243e9820e4003eeadd7dce12bc267f19"  # Default demo key, override via env var WAQI_API_KEY
+    api_key: "4385c71a243e9820e4003eeadd7dce12bc267f19"
     timeout: 10
     
   events:
     provider: "Ticketmaster"
     base_url: "https://app.ticketmaster.com/discovery/v2/events.json"
-    api_key: "Xkpv1HdAKWlmbtOPwqOpRv7RRDgUOtZU"  # Default demo key, override via env var TICKETMASTER_API_KEY
+    api_key: "Xkpv1HdAKWlmbtOPwqOpRv7RRDgUOtZU"
     timeout: 10
     max_results: 100
 
-# Weather-based recommendation settings
 recommendations:
   outdoor_conditions:
     - "clear"
@@ -43,9 +41,8 @@ recommendations:
     - "overcast"
     - "fog"
     - "mist"
-  confidence_threshold: 0.7  # Threshold for overriding user preference
+  confidence_threshold: 0.7  
 
-# Activity filtering
 activities:
   max_results_default: 20
   temperature_range:

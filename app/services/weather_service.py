@@ -2,7 +2,6 @@ import httpx
 from app.models.response.weather_response import WeatherResponse
 from app.services.config_service import get_config
 
-# Load configuration
 config = get_config()
 weather_config = config.get_data_source_config('weather')
 

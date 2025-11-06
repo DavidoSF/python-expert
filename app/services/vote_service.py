@@ -1,10 +1,30 @@
 from typing import List, Dict, Optional, Set, Tuple
 from threading import Lock
+from pathlib import Path
+import json
 from app.models.db.vote import Vote
 from collections import defaultdict
 
 _LOCK = Lock()
-_VOTES: List[Dict] = []  # list of vote dicts: {"user_id": int, "activity_id": int, "score": int}
+_VOTES: List[Dict] = []
+
+VOTES_FILE = Path(__file__).resolve().parents[1] / "data" / "votes.json"
+
+def _load_votes_from_file():
+    """Load votes from JSON file if it exists."""
+    global _VOTES
+    if VOTES_FILE.exists():
+        try:
+            with open(VOTES_FILE, 'r', encoding='utf-8') as f:
+                votes_data = json.load(f)
+                with _LOCK:
+                    _VOTES.clear()
+                    _VOTES.extend(votes_data)
+                print(f"Loaded {len(_VOTES)} votes from {VOTES_FILE}")
+        except Exception as e:
+            print(f"Error loading votes from file: {e}")
+
+_load_votes_from_file()
 
 class VoteService:
     def __init__(self):
@@ -23,7 +43,6 @@ class VoteService:
         self.votes = votes_data
         self.candidates = set()
         
-        # Extract all candidates from rankings
         for vote in votes_data:
             ranking = vote.get('activity_ranking', [])
             self.candidates.update(ranking)
@@ -41,10 +60,8 @@ class VoteService:
         
         for vote in self.votes:
             ranking = vote.get('activity_ranking', [])
-            # Convert ranking to preference dictionary (activity_id -> position)
             pos = {aid: idx for idx, aid in enumerate(ranking)}
             
-            # For each pair of candidates
             for i, a in enumerate(candidates):
                 for b in candidates[i+1:]:
                     if a == b:
@@ -53,15 +70,14 @@ class VoteService:
                     pos_a = pos.get(a)
                     pos_b = pos.get(b)
                     
-                    # Compare positions to determine preference
                     if pos_a is not None and pos_b is not None:
-                        if pos_a < pos_b:  # a is preferred over b
+                        if pos_a < pos_b: 
                             self.pairwise_counts[a][b] += 1
-                        else:  # b is preferred over a
+                        else:  
                             self.pairwise_counts[b][a] += 1
-                    elif pos_a is not None:  # only a appears in ranking
+                    elif pos_a is not None:  
                         self.pairwise_counts[a][b] += 1
-                    elif pos_b is not None:  # only b appears in ranking
+                    elif pos_b is not None: 
                         self.pairwise_counts[b][a] += 1
     
     def build_graph(self) -> None:
@@ -71,13 +87,11 @@ class VoteService:
         """
         candidates = list(self.candidates)
         
-        # Initialize strongest paths with direct pairwise counts
         self.strongest_paths = {
             a: {b: self.pairwise_counts[a].get(b, 0) for b in candidates if b != a}
             for a in candidates
         }
         
-        # Floyd-Warshall algorithm to find strongest paths
         for k in candidates:
             for i in candidates:
                 if i == k:
@@ -90,10 +104,8 @@ class VoteService:
                     path_i_k = self.strongest_paths[i].get(k, 0)
                     path_k_j = self.strongest_paths[k].get(j, 0)
                     
-                    # The strength of the path i->k->j is the minimum of the two segments
                     path_strength = min(path_i_k, path_k_j)
                     
-                    # Update if the new path is stronger
                     if path_strength > current:
                         self.strongest_paths[i][j] = path_strength
     
@@ -107,17 +119,14 @@ class VoteService:
         """
         candidates = list(self.candidates)
         
-        # For each candidate, count how many others they beat
         wins = defaultdict(int)
         for i in candidates:
             for j in candidates:
                 if i == j:
                     continue
-                # i beats j if the strongest path i->j is stronger than j->i
                 if self.strongest_paths[i].get(j, 0) > self.strongest_paths[j].get(i, 0):
                     wins[i] += 1
         
-        # Sort candidates by number of wins (descending)
         ranked = sorted(candidates, key=lambda x: wins[x], reverse=True)
         return ranked
 
@@ -141,8 +150,17 @@ def list_votes() -> List[Dict]:
         return [v.copy() for v in _VOTES]
 
 
-def get_votes_for_activity(activity_id: int) -> List[Dict]:
-    """Get all votes for a specific activity."""
+def get_activity_votes(activity_id: int) -> List[Dict]:
+    """
+    Get all votes for a specific activity.
+    
+    Args:
+        activity_id: The ID of the activity to get votes for
+        
+    Returns:
+        List of vote dictionaries for the specified activity.
+        Returns empty list if no votes exist for this activity.
+    """
     with _LOCK:
         return [v.copy() for v in _VOTES if v.get("activity_id") == activity_id]
 
@@ -155,7 +173,6 @@ def get_activity_ranking() -> List[Dict]:
     with _LOCK:
         votes = [v.copy() for v in _VOTES]
     
-    # Group by activity
     activity_scores = {}
     for v in votes:
         aid = v.get("activity_id")
@@ -164,7 +181,6 @@ def get_activity_ranking() -> List[Dict]:
             activity_scores[aid] = []
         activity_scores[aid].append(score)
     
-    # Calculate averages
     ranking = []
     for aid, scores in activity_scores.items():
         avg = sum(scores) / len(scores)
@@ -174,6 +190,5 @@ def get_activity_ranking() -> List[Dict]:
             "vote_count": len(scores)
         })
     
-    # Sort by average score descending
     ranking.sort(key=lambda x: x["average_score"], reverse=True)
     return ranking

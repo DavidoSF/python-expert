@@ -3,7 +3,6 @@ from typing import List
 from app.models.db.activity import Activity, ActivityType
 from app.services.config_service import get_config
 
-# Load configuration
 config = get_config()
 events_config = config.get_data_source_config('events')
 

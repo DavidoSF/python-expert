@@ -27,7 +27,6 @@ def submit_vote(vote: Vote = Body(...)):
     if not vote.votes:
         raise HTTPException(status_code=400, detail="votes list cannot be empty")
     
-    # Validate that all activities exist
     for activity_vote in vote.votes:
         if not activity_lookup_service.activity_exists(activity_vote.activity_id):
             raise HTTPException(
@@ -35,7 +34,6 @@ def submit_vote(vote: Vote = Body(...)):
                 detail=f"Activity with id {activity_vote.activity_id} does not exist"
             )
     
-    # Store each vote
     for activity_vote in vote.votes:
         vote_service.add_vote(activity_vote.model_dump())
     
@@ -51,7 +49,13 @@ def list_votes():
 @router.get("/activity/{activity_id}")
 def get_activity_votes(activity_id: int):
     """Get all votes for a specific activity with average score."""
-    votes = vote_service.get_votes_for_activity(activity_id)
+    if not activity_lookup_service.activity_exists(activity_id):
+        raise HTTPException(
+            status_code=404,
+            detail=f"Activity with id {activity_id} does not exist. Cannot retrieve votes for non-existent activity."
+        )
+    
+    votes = vote_service.get_activity_votes(activity_id)
     if not votes:
         return {"activity_id": activity_id, "votes": [], "average_score": 0, "total_votes": 0}
     

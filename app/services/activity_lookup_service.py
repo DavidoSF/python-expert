@@ -13,11 +13,8 @@ def get_all_activity_ids() -> List[int]:
     """
     from app.routes.admin import admin_activities
     
-    # Get IDs from admin activities
     activity_ids = [a.id for a in admin_activities]
     
-    # Note: Ticketmaster activities are fetched dynamically per city/date,
-    # so we can't preload all possible IDs. We'll need to validate differently.
     return activity_ids
 
 

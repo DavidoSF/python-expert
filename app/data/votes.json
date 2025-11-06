@@ -1,0 +1,82 @@
+[
+  {
+    "user_id": 1,
+    "activity_id": 100,
+    "score": 10
+  },
+  {
+    "user_id": 1,
+    "activity_id": 101,
+    "score": 6
+  },
+  {
+    "user_id": 1,
+    "activity_id": 102,
+    "score": 7
+  },
+  {
+    "user_id": 1,
+    "activity_id": 103,
+    "score": 9
+  },
+  {
+    "user_id": 2,
+    "activity_id": 100,
+    "score": 9
+  },
+  {
+    "user_id": 2,
+    "activity_id": 101,
+    "score": 7
+  },
+  {
+    "user_id": 2,
+    "activity_id": 102,
+    "score": 10
+  },
+  {
+    "user_id": 2,
+    "activity_id": 103,
+    "score": 8
+  },
+  {
+    "user_id": 3,
+    "activity_id": 100,
+    "score": 7
+  },
+  {
+    "user_id": 3,
+    "activity_id": 101,
+    "score": 8
+  },
+  {
+    "user_id": 3,
+    "activity_id": 102,
+    "score": 6
+  },
+  {
+    "user_id": 3,
+    "activity_id": 103,
+    "score": 7
+  },
+  {
+    "user_id": 4,
+    "activity_id": 100,
+    "score": 8
+  },
+  {
+    "user_id": 4,
+    "activity_id": 101,
+    "score": 9
+  },
+  {
+    "user_id": 4,
+    "activity_id": 102,
+    "score": 9
+  },
+  {
+    "user_id": 4,
+    "activity_id": 103,
+    "score": 6
+  }
+]

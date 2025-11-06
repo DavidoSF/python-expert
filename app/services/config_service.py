@@ -22,7 +22,6 @@ class ConfigService:
     
     def _load_config(self) -> None:
         """Load configuration from YAML file."""
-        # Look for config.yaml in project root
         config_path = Path(__file__).resolve().parents[2] / "config.yaml"
         
         if not config_path.exists():
@@ -54,7 +53,6 @@ class ConfigService:
         """Get configuration for a specific data source (weather, air_quality, events)."""
         config = self.get(f'data_sources.{source}', {})
         
-        # Allow environment variables to override API keys
         if source == 'weather':
             env_key = os.getenv('OPENWEATHER_API_KEY')
             if env_key:
@@ -79,7 +77,6 @@ class ConfigService:
         self._load_config()
 
 
-# Singleton instance
 _config_service = ConfigService()
 
 def get_config() -> ConfigService:

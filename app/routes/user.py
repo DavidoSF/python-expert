@@ -9,6 +9,7 @@ from fastapi import Header
 
 router = APIRouter(prefix="/user", tags=["user"])
 
+
 @router.get("/{user_id}", response_model=User)
 def get_user(user_id: int):
     """Return a user by id from the JSON data file; raises 404 if not found."""
@@ -21,7 +22,6 @@ def get_user(user_id: int):
 @router.post("/", response_model=User, status_code=201)
 def create_user(user: UserCreate):
     """Create a new user in the session store (does not modify the original JSON file)."""
-    # Use Pydantic v2 API
     data = user.model_dump()
     data.pop("id", None)
     created = user_service.create_user(data)
@@ -31,8 +31,7 @@ def create_user(user: UserCreate):
 @router.put("/{user_id}", response_model=User)
 def update_user(user_id: int, user: UserUpdate):
     """Update an existing user in the session store."""
-    # Only include fields that were actually provided in the request body
-    # Use Pydantic v2 API
+
     data = user.model_dump(exclude_unset=True)
     data.pop("id", None)
     updated = user_service.update_user(user_id, data)
@@ -47,13 +46,9 @@ def delete_user(user_id: int):
     deleted = user_service.delete_user(user_id)
     if not deleted:
         raise HTTPException(status_code=404, detail="User not found")
-    # Return an explicit empty response for 204 so no JSON content-type is set
     return Response(status_code=204)
 
 
-# Development-only endpoint: reset the in-memory user store to the original JSON.
-# If you set the environment variable RESET_TOKEN, the request must include a matching
-# header 'x-reset-token' to authorize the reset. Keep this disabled/guarded in prod.
 RESET_TOKEN = os.getenv("RESET_TOKEN")
 
 
@@ -68,7 +63,4 @@ def reset_users(x_reset_token: Optional[str] = Header(None)):
         if x_reset_token != RESET_TOKEN:
             raise HTTPException(status_code=403, detail="Forbidden")
     user_service.reset_store()
-    # Return explicit empty response for 204 to avoid application/json content-type
     return Response(status_code=204)
-
-

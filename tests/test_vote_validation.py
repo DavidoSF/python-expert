@@ -70,8 +70,8 @@ def test_vote_mixed_existing_and_nonexistent():
     """Test that voting with a mix of existing and non-existing activities fails."""
     vote_payload = {
         "votes": [
-            {"user_id": 1, "activity_id": 999, "score": 9},  # exists
-            {"user_id": 1, "activity_id": 88888, "score": 7}  # doesn't exist
+            {"user_id": 1, "activity_id": 999, "score": 9},
+            {"user_id": 1, "activity_id": 88888, "score": 7}
         ]
     }
     
@@ -79,14 +79,12 @@ def test_vote_mixed_existing_and_nonexistent():
     assert response.status_code == 404
     assert "Activity with id 88888 does not exist" in response.json()["detail"]
     
-    # Verify no votes were recorded (transaction-like behavior)
     all_votes = vote_service.list_votes()
     assert len(all_votes) == 0
 
 
 def test_vote_multiple_existing_activities():
     """Test voting for multiple existing admin activities."""
-    # Add another admin activity
     admin_activities.append(
         Activity(
             id=998,
@@ -110,6 +108,5 @@ def test_vote_multiple_existing_activities():
     assert response.status_code == 201
     assert response.json()["votes_recorded"] == 2
     
-    # Verify both votes were recorded
     all_votes = vote_service.list_votes()
     assert len(all_votes) == 2

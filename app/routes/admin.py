@@ -1,7 +1,11 @@
 from fastapi import APIRouter, HTTPException
 from typing import List, Dict, Any
+from pathlib import Path
+import json
 from app.models.db.activity import Activity
-from app.services.ticketmaster_service import fetch_activities as fetch_ticketmaster_activities
+from app.services.ticketmaster_service import (
+    fetch_activities as fetch_ticketmaster_activities,
+)
 from app.services import user_service
 from app.models.db.user import UserRole
 from app.services.config_service import get_config
@@ -9,8 +13,23 @@ from app.services.config_service import get_config
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
-# In-memory admin-added activities
 admin_activities: List[Activity] = []
+
+ACTIVITIES_FILE = Path(__file__).resolve().parents[1] / "data" / "activities.json"
+
+
+def _load_activities_from_file():
+    """Load activities from JSON file if it exists."""
+    global admin_activities
+    if ACTIVITIES_FILE.exists():
+        with open(ACTIVITIES_FILE, "r", encoding="utf-8") as f:
+            activities_data = json.load(f)
+            admin_activities.clear()
+            for activity_dict in activities_data:
+                admin_activities.append(Activity(**activity_dict))
+
+
+_load_activities_from_file()
 
 
 @router.post("/activity", response_model=Activity)
@@ -36,9 +55,14 @@ async def list_admin_activities(
         raise HTTPException(status_code=403, detail="Administrator privileges required")
 
     ticketmaster_acts = await fetch_ticketmaster_activities(city, countryCode, date)
-    custom_acts = [a for a in admin_activities if getattr(a, "location", None) == city and getattr(a, "date", None) == date]
+    custom_acts = [
+        a
+        for a in admin_activities
+        if getattr(a, "location", None) == city and getattr(a, "date", None) == date
+    ]
 
     return ticketmaster_acts + custom_acts
+
 
 @router.get("/all-activities", response_model=List[Activity])
 async def list_activities(
@@ -56,20 +80,19 @@ async def list_activities(
     return admin_activities
 
 
-
 @router.get("/config", response_model=Dict[str, Any])
 def get_configuration(admin_user_id: int):
     """View current application configuration.
-    
+
     Requires administrator privileges. Returns the full configuration including
     data source settings, recommendation parameters, etc.
-    
+
     UC6: View configuration management.
     """
     user_record = user_service.get_user_by_id(admin_user_id)
     if not user_record or user_record.get("role") != UserRole.administrator.value:
         raise HTTPException(status_code=403, detail="Administrator privileges required")
-    
+
     config = get_config()
     return {
         "app": config.get("app", {}),
@@ -81,4 +104,3 @@ def get_configuration(admin_user_id: int):
         "recommendations": config.get_recommendation_config(),
         "activities": config.get("activities", {}),
     }
-

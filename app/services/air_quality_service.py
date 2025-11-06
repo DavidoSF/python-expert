@@ -2,7 +2,6 @@ import httpx
 from app.models.db.weather import AirQuality
 from app.services.config_service import get_config
 
-# Load configuration
 config = get_config()
 air_quality_config = config.get_data_source_config('air_quality')
 
@@ -26,7 +25,6 @@ def get_aqi_category(aqi: int) -> str:
         return "Hazardous"
 
 async def fetch_air_quality(city: str, date: str, country: str = None) -> AirQuality:
-    # WAQI API endpoint format: https://api.waqi.info/feed/{city}/?token={token}
     city_query = f"{city}/{country}" if country else city
     url = f"{OPENAQ_URL}/{city_query}/"
     params = {"token": API_KEY}
@@ -40,12 +38,9 @@ async def fetch_air_quality(city: str, date: str, country: str = None) -> AirQua
             aqi = aqi_data.get("aqi", 0)
             category = get_aqi_category(aqi)
             
-            # Build description from available pollutants
-            # Note: WAQI API returns individual AQI values, not actual concentrations
             pollutants = []
             iaqi = aqi_data.get("iaqi", {})
             
-            # Map pollutant names to their display format
             pollutant_map = {
                 "pm25": "PM2.5",
                 "pm10": "PM10",
