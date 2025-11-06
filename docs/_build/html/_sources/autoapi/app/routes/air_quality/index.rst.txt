@@ -1,0 +1,31 @@
+app.routes.air_quality
+======================
+
+.. py:module:: app.routes.air_quality
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.air_quality.router
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   app.routes.air_quality.get_air_quality
+
+
+Module Contents
+---------------
+
+.. py:function:: get_air_quality(city: str, date: str)
+   :async:
+
+
+.. py:data:: router
+

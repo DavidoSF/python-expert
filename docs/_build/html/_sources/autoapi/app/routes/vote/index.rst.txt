@@ -1,0 +1,41 @@
+app.routes.vote
+===============
+
+.. py:module:: app.routes.vote
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.vote.router
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   app.routes.vote.list_votes
+   app.routes.vote.submit_vote
+   app.routes.vote.vote_result
+
+
+Module Contents
+---------------
+
+.. py:function:: list_votes()
+
+.. py:function:: submit_vote(vote: app.models.db.vote.Vote = Body(...))
+
+   Submit a user's ranked list of activity ids (highest preference first).
+
+
+.. py:function:: vote_result()
+
+   Compute Condorcet results across stored votes and return ranking info.
+
+
+.. py:data:: router
+

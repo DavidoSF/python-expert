@@ -1,0 +1,19 @@
+app.routes.users
+================
+
+.. py:module:: app.routes.users
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.users.router
+
+
+Module Contents
+---------------
+
+.. py:data:: router
+

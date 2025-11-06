@@ -1,0 +1,22 @@
+test_activities
+===============
+
+.. py:module:: test_activities
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_activities.test_get_activities
+   test_activities.test_get_activities_by_weather
+
+
+Module Contents
+---------------
+
+.. py:function:: test_get_activities()
+
+.. py:function:: test_get_activities_by_weather()
+
