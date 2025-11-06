@@ -24,6 +24,13 @@ def list_votes():
 
 @router.get("/result")
 def vote_result():
-    """Compute Condorcet results across stored votes and return ranking info."""
-    result = vote_service.ranking_from_votes()
-    return result
+    """
+    Compute Condorcet/Schulze ranking results across stored votes.
+    Returns ordered list of activity IDs from most to least preferred.
+    """
+    rankings = vote_service.compute_rankings()
+    return {
+        "rankings": rankings,
+        "method": "schulze",
+        "total_votes": len(vote_service.list_votes())
+    }
