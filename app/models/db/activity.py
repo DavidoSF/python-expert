@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_serializer
 from typing import Optional
 from enum import Enum
 
@@ -17,7 +17,9 @@ class Activity(BaseModel):
     date: str
     description: Optional[str] = None
     
-class ActivityVote(BaseModel):
-    user_id: int
-    activity_id: int
-    score: int
+    # @field_serializer('date')
+    # def serialize_date(self, value: str) -> str:
+    #     """Format date to only show YYYY-MM-DD, removing time portion."""
+    #     if 'T' in value:
+    #         return value.split('T')[0]
+    #     return value
