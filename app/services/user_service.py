@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "users.json"
 
+# In-memory store and lock for session-like behavior
 _LOCK = Lock()
 _STORE: Dict[int, Dict[str, Any]] = {}
 _NEXT_ID = 1
@@ -13,6 +14,7 @@ _INITIAL_LOADED = False
 
 
 def _now_iso() -> str:
+    # Use timezone-aware UTC timestamps and format with a trailing Z
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
@@ -36,19 +38,17 @@ def _load_initial() -> None:
 
 def reset_store() -> None:
     """Reset the in-memory store back to the initial JSON contents."""
+    # _load_initial() already acquires the lock when assigning to the module
+    # state. Holding the same non-reentrant Lock here and then calling
+    # _load_initial() would attempt to acquire the lock twice and deadlock.
+    # Call _load_initial without holding the outer lock so the internal
+    # lock acquisition can proceed safely.
     _load_initial()
 
 
 def _ensure_loaded() -> None:
     if not _INITIAL_LOADED:
         _load_initial()
-
-
-def get_user(user_id: int) -> Optional[Dict[str, Any]]:
-    """Get a user by ID from the store."""
-    _ensure_loaded()
-    with _LOCK:
-        return _STORE.get(user_id)
 
 
 def list_users() -> List[Dict[str, Any]]:
@@ -88,6 +88,7 @@ def update_user(user_id: int, updates: Dict[str, Any]) -> Optional[Dict[str, Any
         existing = _STORE.get(uid)
         if not existing:
             return None
+        # Prevent changing the id accidentally
         updates = {k: v for k, v in updates.items() if k != "id"}
         existing.update(updates)
         existing["updated_at"] = _now_iso()

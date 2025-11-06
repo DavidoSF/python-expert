@@ -2,12 +2,24 @@ from fastapi.testclient import TestClient
 from app.main import app
 
 def test_personalized_activities():
-    """Test personalized activities endpoint (uses hardcoded user profile)."""
     client = TestClient(app)
+    user_data = {
+        "id": 1,
+        "username": "test_user",
+        "email": "test@example.com",
+        "first_name": "John",
+        "last_name": "Doe",
+        "birth_date": "1990-01-01",
+        "gender": "male",
+        "interests": ["music", "sports", "culture"],
+        "activity_preference": "outdoor",
+        "role": "subscriber"
+    }
     
     response = client.post(
         "/activities/personalized", 
-        params={"city": "Paris", "countryCode": "FR", "date": "2025-11-01", "max_results": 10}
+        params={"city": "Paris", "countryCode": "FR", "date": "2025-11-01"},
+        json=user_data
     )
     assert response.status_code == 200
     assert isinstance(response.json(), list)
