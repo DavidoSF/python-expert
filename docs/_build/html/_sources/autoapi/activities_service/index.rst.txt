@@ -1,0 +1,81 @@
+activities_service
+==================
+
+.. py:module:: activities_service
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   activities_service.INDOOR_WEATHER_CONDITIONS
+   activities_service.OUTDOOR_WEATHER_CONDITIONS
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   activities_service.fetch_activities_by_weather
+   activities_service.fetch_activities_by_weather_ordered_by_votes
+   activities_service.get_weather_recommendation
+
+
+Module Contents
+---------------
+
+.. py:function:: fetch_activities_by_weather(city: str, countryCode: str, date: str, user: Optional[app.models.db.user.User] = None, weather_preference: Optional[str] = 'auto', activity_types: Optional[List[app.models.db.activity.ActivityType]] = None, max_results: Optional[int] = None, custom_weather_mapping: Optional[Dict[str, str]] = None, temperature_range: Optional[tuple] = None) -> List[app.models.db.activity.Activity]
+   :async:
+
+
+   Fetch activities filtered by weather conditions and user preferences.
+
+   :param city: City name
+   :param countryCode: Country code
+   :param date: Date in ISO format
+   :param user: User profile for personalized filtering
+   :param weather_preference: "auto" (weather-based), "indoor", "outdoor", "all"
+   :param activity_types: List of activity types to filter by
+   :param max_results: Maximum number of activities to return
+   :param custom_weather_mapping: Custom mapping of weather conditions to preferences
+   :param temperature_range: Tuple of (min_temp, max_temp) for temperature filtering
+
+   :returns: List of filtered activities
+
+
+.. py:function:: fetch_activities_by_weather_ordered_by_votes(city: str, countryCode: str, date: str, user: Optional[app.models.db.user.User] = None, weather_preference: Optional[str] = 'auto', activity_types: Optional[List[app.models.db.activity.ActivityType]] = None, max_results: Optional[int] = None) -> List[app.models.db.activity.Activity]
+   :async:
+
+
+   Fetch activities filtered by weather conditions and order them by vote count.
+
+   :param city: City name
+   :param countryCode: Country code
+   :param date: Date in ISO format
+   :param user: Optional user profile for personalized filtering
+   :param weather_preference: "auto" (weather-based), "indoor", "outdoor", "all"
+   :param activity_types: Optional list of activity types to filter by
+   :param max_results: Optional maximum number of activities to return
+
+   :returns: List of activities ordered by vote count (most votes first)
+
+
+.. py:function:: get_weather_recommendation(city: str, date: str) -> Dict[str, Any]
+   :async:
+
+
+   Get weather-based activity recommendations with metadata.
+
+   :returns: Dict containing weather info and recommendations
+
+
+.. py:data:: INDOOR_WEATHER_CONDITIONS
+   :value: ['rain', 'snow', 'thunderstorm', 'drizzle', 'cloudy', 'overcast', 'fog', 'mist']
+
+
+.. py:data:: OUTDOOR_WEATHER_CONDITIONS
+   :value: ['clear', 'sunny', 'partly cloudy', 'fair']
+
+

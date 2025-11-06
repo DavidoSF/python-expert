@@ -1,0 +1,37 @@
+app.routes.admin
+================
+
+.. py:module:: app.routes.admin
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.admin.admin_activities
+   app.routes.admin.router
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   app.routes.admin.add_activity
+   app.routes.admin.list_admin_activities
+
+
+Module Contents
+---------------
+
+.. py:function:: add_activity(activity: app.models.db.activity.Activity)
+
+.. py:function:: list_admin_activities()
+
+.. py:data:: admin_activities
+   :value: []
+
+
+.. py:data:: router
+

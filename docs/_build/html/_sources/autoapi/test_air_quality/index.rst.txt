@@ -1,0 +1,19 @@
+test_air_quality
+================
+
+.. py:module:: test_air_quality
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_air_quality.test_get_air_quality
+
+
+Module Contents
+---------------
+
+.. py:function:: test_get_air_quality()
+

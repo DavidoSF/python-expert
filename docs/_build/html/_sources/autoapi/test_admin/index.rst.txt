@@ -1,0 +1,19 @@
+test_admin
+==========
+
+.. py:module:: test_admin
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_admin.test_add_admin_activity_and_list
+
+
+Module Contents
+---------------
+
+.. py:function:: test_add_admin_activity_and_list()
+

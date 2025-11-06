@@ -1,0 +1,62 @@
+app.routes.user
+===============
+
+.. py:module:: app.routes.user
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.user.RESET_TOKEN
+   app.routes.user.router
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   app.routes.user.create_user
+   app.routes.user.delete_user
+   app.routes.user.get_user
+   app.routes.user.reset_users
+   app.routes.user.update_user
+
+
+Module Contents
+---------------
+
+.. py:function:: create_user(user: app.models.db.user.UserCreate)
+
+   Create a new user in the session store (does not modify the original JSON file).
+
+
+.. py:function:: delete_user(user_id: int)
+
+   Delete a user from the session store.
+
+
+.. py:function:: get_user(user_id: int)
+
+   Return a user by id from the JSON data file; raises 404 if not found.
+
+
+.. py:function:: reset_users(x_reset_token: Optional[str] = Header(None))
+
+   Reset the in-memory users store from `app/data/users.json`.
+
+   - If RESET_TOKEN env var is set, request must include header `x-reset-token` with that value.
+   - This does not modify the JSON file on disk; it only resets the in-memory session store.
+
+
+.. py:function:: update_user(user_id: int, user: app.models.db.user.UserUpdate)
+
+   Update an existing user in the session store.
+
+
+.. py:data:: RESET_TOKEN
+
+.. py:data:: router
+
