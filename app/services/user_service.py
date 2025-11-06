@@ -50,6 +50,13 @@ def _ensure_loaded() -> None:
     if not _INITIAL_LOADED:
         _load_initial()
 
+def get_user(user_id: int) -> Optional[Dict[str, Any]]:
+    """Get a user by ID from the store."""
+    _ensure_loaded()
+    with _LOCK:
+        return _STORE.get(user_id)
+        _load_initial()
+
 
 def list_users() -> List[Dict[str, Any]]:
     _ensure_loaded()

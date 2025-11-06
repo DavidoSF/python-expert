@@ -31,6 +31,7 @@ def get_admin_activities() -> List[Activity]:
     from app.routes.admin import admin_activities
     return admin_activities
 
+from app.services.recommendation_service import get_collaborative_recommendations
 
 # Weather condition mappings for flexibility
 OUTDOOR_WEATHER_CONDITIONS = ["clear", "sunny", "partly cloudy", "fair"]
@@ -357,3 +358,54 @@ async def fetch_activities_by_weather_ordered_by_votes(
         sorted_activities = sorted_activities[:max_results]
 
     return sorted_activities
+
+async def suggest_personalized_activities(
+    city: str,
+    countryCode: str,
+    date: str,
+    user: User,
+    weather_preference: Optional[str] = "auto",
+    max_results: Optional[int] = 5
+) -> List[Activity]:
+    """
+    Suggest activities based on weather, user similarity, and collaborative filtering.
+    
+    This function combines:
+    1. Weather-appropriate activities filtering
+    2. Similar user preferences (collaborative filtering)
+    3. Personal activity history and voting patterns
+    
+    Args:
+        city: City name
+        countryCode: Country code
+        date: Date in ISO format
+        user: User to get recommendations for
+        weather_preference: Weather preference override
+        max_results: Maximum number of activities to return
+    
+    Returns:
+        List of recommended activities ordered by relevance
+    """
+    # First get weather-filtered activities
+    weather_filtered = await fetch_activities_by_weather(
+        city=city,
+        countryCode=countryCode,
+        date=date,
+        user=user,
+        weather_preference=weather_preference
+    )
+    
+    if not weather_filtered:
+        return []
+    
+    # Get collaborative recommendations based on similar users
+    recommendations = get_collaborative_recommendations(
+        user=user,
+        current_activities=weather_filtered,
+        max_recommendations=max_results
+    )
+    
+    # Extract just the activities from the scored recommendations
+    recommended_activities = [activity for activity, score in recommendations]
+    
+    return recommended_activities
