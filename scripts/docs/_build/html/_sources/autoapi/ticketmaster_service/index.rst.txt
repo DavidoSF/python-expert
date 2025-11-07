@@ -1,0 +1,46 @@
+ticketmaster_service
+====================
+
+.. py:module:: ticketmaster_service
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   ticketmaster_service.API_KEY
+   ticketmaster_service.MAX_RESULTS
+   ticketmaster_service.TICKETMASTER_URL
+   ticketmaster_service.TIMEOUT
+   ticketmaster_service.config
+   ticketmaster_service.events_config
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ticketmaster_service.fetch_activities
+
+
+Module Contents
+---------------
+
+.. py:function:: fetch_activities(city: str, countryCode: str, date: str) -> List[app.models.db.activity.Activity]
+   :async:
+
+
+.. py:data:: API_KEY
+
+.. py:data:: MAX_RESULTS
+
+.. py:data:: TICKETMASTER_URL
+
+.. py:data:: TIMEOUT
+
+.. py:data:: config
+
+.. py:data:: events_config
+

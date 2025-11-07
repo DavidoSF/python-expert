@@ -1,0 +1,1669 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; Weather Activity Recommendation API 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=195f8d9c" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Weather Activity Recommendation API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#core-components">Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#weather-service">Weather Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#activity-service">Activity Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#user-service">User Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#vote-service">Vote Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#air-quality-service">Air Quality Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#admin-service">Admin Service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#technology-stack">Technology Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#main-endpoints">Main Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_reference.html#weather-endpoints">Weather Endpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference.html#activity-endpoints">Activity Endpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference.html#user-management">User Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference.html#voting-system">Voting System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference.html#air-quality">Air Quality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference.html#admin-functions">Admin Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#response-formats">Response Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#rate-limiting">Rate Limiting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/app/index.html">app</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/app/index.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/app/main/index.html">app.main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/app/models/index.html">app.models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/app/routes/index.html">app.routes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/user/index.html">user</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/user/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/user/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user/index.html#user.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user/index.html#user.UserCreate"><code class="docutils literal notranslate"><span class="pre">UserCreate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user/index.html#user.UserRole"><code class="docutils literal notranslate"><span class="pre">UserRole</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user/index.html#user.UserUpdate"><code class="docutils literal notranslate"><span class="pre">UserUpdate</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/vote/index.html">vote</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/vote/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/vote/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote/index.html#vote.ActivityVote"><code class="docutils literal notranslate"><span class="pre">ActivityVote</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote/index.html#vote.Vote"><code class="docutils literal notranslate"><span class="pre">Vote</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/weather/index.html">weather</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/weather/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/weather/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather/index.html#weather.AirQuality"><code class="docutils literal notranslate"><span class="pre">AirQuality</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather/index.html#weather.Weather"><code class="docutils literal notranslate"><span class="pre">Weather</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/activity/index.html">activity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/activity/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/activity/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activity/index.html#activity.Activity"><code class="docutils literal notranslate"><span class="pre">Activity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activity/index.html#activity.ActivityType"><code class="docutils literal notranslate"><span class="pre">ActivityType</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_main/index.html">test_main</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_main/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_main/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_main/index.html#test_main.test_get_weather"><code class="docutils literal notranslate"><span class="pre">test_get_weather()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_vote/index.html">test_vote</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_vote/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_vote/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote/index.html#test_vote.setup_test_activities"><code class="docutils literal notranslate"><span class="pre">setup_test_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote/index.html#test_vote.test_get_activity_ranking"><code class="docutils literal notranslate"><span class="pre">test_get_activity_ranking()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote/index.html#test_vote.test_vote_for_activities"><code class="docutils literal notranslate"><span class="pre">test_vote_for_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote/index.html#test_vote.test_vote_with_duplicate_activity"><code class="docutils literal notranslate"><span class="pre">test_vote_with_duplicate_activity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote/index.html#test_vote.test_vote_with_invalid_score"><code class="docutils literal notranslate"><span class="pre">test_vote_with_invalid_score()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_admin/index.html">test_admin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_admin/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_admin/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_admin/index.html#test_admin.test_add_admin_activity_and_list"><code class="docutils literal notranslate"><span class="pre">test_add_admin_activity_and_list()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/user_service/index.html">user_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/user_service/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/user_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/user_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user_service/index.html#user_service.create_user"><code class="docutils literal notranslate"><span class="pre">create_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user_service/index.html#user_service.delete_user"><code class="docutils literal notranslate"><span class="pre">delete_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user_service/index.html#user_service.get_user"><code class="docutils literal notranslate"><span class="pre">get_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user_service/index.html#user_service.get_user_by_id"><code class="docutils literal notranslate"><span class="pre">get_user_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user_service/index.html#user_service.list_users"><code class="docutils literal notranslate"><span class="pre">list_users()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user_service/index.html#user_service.reset_store"><code class="docutils literal notranslate"><span class="pre">reset_store()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user_service/index.html#user_service.update_user"><code class="docutils literal notranslate"><span class="pre">update_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/user_service/index.html#user_service.DATA_PATH"><code class="docutils literal notranslate"><span class="pre">DATA_PATH</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/vote_service/index.html">vote_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/vote_service/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/vote_service/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/vote_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/vote_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote_service/index.html#vote_service.VoteService"><code class="docutils literal notranslate"><span class="pre">VoteService</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote_service/index.html#vote_service.add_vote"><code class="docutils literal notranslate"><span class="pre">add_vote()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote_service/index.html#vote_service.get_activity_ranking"><code class="docutils literal notranslate"><span class="pre">get_activity_ranking()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote_service/index.html#vote_service.get_activity_votes"><code class="docutils literal notranslate"><span class="pre">get_activity_votes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote_service/index.html#vote_service.list_votes"><code class="docutils literal notranslate"><span class="pre">list_votes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote_service/index.html#vote_service.reset_votes"><code class="docutils literal notranslate"><span class="pre">reset_votes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/vote_service/index.html#vote_service.VOTES_FILE"><code class="docutils literal notranslate"><span class="pre">VOTES_FILE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_dynamic/index.html">test_dynamic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_dynamic/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_dynamic/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_dynamic/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_dynamic/index.html#test_dynamic.test_route_responsive"><code class="docutils literal notranslate"><span class="pre">test_route_responsive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_dynamic/index.html#test_dynamic.DEFAULT_JSON"><code class="docutils literal notranslate"><span class="pre">DEFAULT_JSON</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_dynamic/index.html#test_dynamic.DEFAULT_QUERY"><code class="docutils literal notranslate"><span class="pre">DEFAULT_QUERY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_dynamic/index.html#test_dynamic.ROUTE_OVERRIDES"><code class="docutils literal notranslate"><span class="pre">ROUTE_OVERRIDES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_dynamic/index.html#test_dynamic.SKIP_PREFIXES"><code class="docutils literal notranslate"><span class="pre">SKIP_PREFIXES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_dynamic/index.html#test_dynamic.client"><code class="docutils literal notranslate"><span class="pre">client</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_dynamic/index.html#test_dynamic.path"><code class="docutils literal notranslate"><span class="pre">path</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_testing/index.html">test_testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/config_service/index.html">config_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/config_service/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/config_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/config_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/config_service/index.html#config_service.ConfigService"><code class="docutils literal notranslate"><span class="pre">ConfigService</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/config_service/index.html#config_service.get_config"><code class="docutils literal notranslate"><span class="pre">get_config()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/weather_service/index.html">weather_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/weather_service/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/weather_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/weather_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather_service/index.html#weather_service.fetch_weather"><code class="docutils literal notranslate"><span class="pre">fetch_weather()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather_service/index.html#weather_service.API_KEY"><code class="docutils literal notranslate"><span class="pre">API_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather_service/index.html#weather_service.OPENWEATHERMAP_URL"><code class="docutils literal notranslate"><span class="pre">OPENWEATHERMAP_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather_service/index.html#weather_service.TIMEOUT"><code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather_service/index.html#weather_service.config"><code class="docutils literal notranslate"><span class="pre">config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather_service/index.html#weather_service.weather_config"><code class="docutils literal notranslate"><span class="pre">weather_config</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_activities/index.html">test_activities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_activities/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_activities/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_activities/index.html#test_activities.test_get_activities"><code class="docutils literal notranslate"><span class="pre">test_get_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_activities/index.html#test_activities.test_get_activities_by_weather"><code class="docutils literal notranslate"><span class="pre">test_get_activities_by_weather()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/weather_response/index.html">weather_response</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/weather_response/index.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/weather_response/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/weather_response/index.html#weather_response.WeatherResponse"><code class="docutils literal notranslate"><span class="pre">WeatherResponse</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_air_quality/index.html">test_air_quality</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_air_quality/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_air_quality/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_air_quality/index.html#test_air_quality.test_get_air_quality"><code class="docutils literal notranslate"><span class="pre">test_get_air_quality()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/activities_service/index.html">activities_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/activities_service/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/activities_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/activities_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.fetch_activities_by_weather"><code class="docutils literal notranslate"><span class="pre">fetch_activities_by_weather()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.fetch_activities_by_weather_ordered_by_votes"><code class="docutils literal notranslate"><span class="pre">fetch_activities_by_weather_ordered_by_votes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.get_admin_activities"><code class="docutils literal notranslate"><span class="pre">get_admin_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.get_weather_recommendation"><code class="docutils literal notranslate"><span class="pre">get_weather_recommendation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.suggest_personalized_activities"><code class="docutils literal notranslate"><span class="pre">suggest_personalized_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.CONFIDENCE_THRESHOLD"><code class="docutils literal notranslate"><span class="pre">CONFIDENCE_THRESHOLD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.INDOOR_WEATHER_CONDITIONS"><code class="docutils literal notranslate"><span class="pre">INDOOR_WEATHER_CONDITIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#id0"><code class="docutils literal notranslate"><span class="pre">INDOOR_WEATHER_CONDITIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.OUTDOOR_WEATHER_CONDITIONS"><code class="docutils literal notranslate"><span class="pre">OUTDOOR_WEATHER_CONDITIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#id1"><code class="docutils literal notranslate"><span class="pre">OUTDOOR_WEATHER_CONDITIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.config"><code class="docutils literal notranslate"><span class="pre">config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activities_service/index.html#activities_service.rec_config"><code class="docutils literal notranslate"><span class="pre">rec_config</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html">test_admin_uc5_uc6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_admin_add_custom_activity"><code class="docutils literal notranslate"><span class="pre">test_admin_add_custom_activity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_admin_list_activities_requires_admin"><code class="docutils literal notranslate"><span class="pre">test_admin_list_activities_requires_admin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_admin_list_activities_with_admin_user"><code class="docutils literal notranslate"><span class="pre">test_admin_list_activities_with_admin_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_admin_view_configuration"><code class="docutils literal notranslate"><span class="pre">test_admin_view_configuration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_config_view_requires_admin"><code class="docutils literal notranslate"><span class="pre">test_config_view_requires_admin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.client"><code class="docutils literal notranslate"><span class="pre">client</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/air_quality_service/index.html">air_quality_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/air_quality_service/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/air_quality_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/air_quality_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/air_quality_service/index.html#air_quality_service.fetch_air_quality"><code class="docutils literal notranslate"><span class="pre">fetch_air_quality()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/air_quality_service/index.html#air_quality_service.get_aqi_category"><code class="docutils literal notranslate"><span class="pre">get_aqi_category()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/air_quality_service/index.html#air_quality_service.API_KEY"><code class="docutils literal notranslate"><span class="pre">API_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/air_quality_service/index.html#air_quality_service.OPENAQ_URL"><code class="docutils literal notranslate"><span class="pre">OPENAQ_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/air_quality_service/index.html#air_quality_service.TIMEOUT"><code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/air_quality_service/index.html#air_quality_service.air_quality_config"><code class="docutils literal notranslate"><span class="pre">air_quality_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/air_quality_service/index.html#air_quality_service.config"><code class="docutils literal notranslate"><span class="pre">config</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/ticketmaster_service/index.html">ticketmaster_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#ticketmaster_service.fetch_activities"><code class="docutils literal notranslate"><span class="pre">fetch_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#ticketmaster_service.API_KEY"><code class="docutils literal notranslate"><span class="pre">API_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#ticketmaster_service.MAX_RESULTS"><code class="docutils literal notranslate"><span class="pre">MAX_RESULTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#ticketmaster_service.TICKETMASTER_URL"><code class="docutils literal notranslate"><span class="pre">TICKETMASTER_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#ticketmaster_service.TIMEOUT"><code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#ticketmaster_service.config"><code class="docutils literal notranslate"><span class="pre">config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/ticketmaster_service/index.html#ticketmaster_service.events_config"><code class="docutils literal notranslate"><span class="pre">events_config</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_vote_validation/index.html">test_vote_validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_vote_validation/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_vote_validation/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_vote_validation/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_validation/index.html#test_vote_validation.reset_votes"><code class="docutils literal notranslate"><span class="pre">reset_votes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_validation/index.html#test_vote_validation.setup_admin_activities"><code class="docutils literal notranslate"><span class="pre">setup_admin_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_validation/index.html#test_vote_validation.test_vote_for_existing_admin_activity"><code class="docutils literal notranslate"><span class="pre">test_vote_for_existing_admin_activity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_validation/index.html#test_vote_validation.test_vote_for_nonexistent_activity"><code class="docutils literal notranslate"><span class="pre">test_vote_for_nonexistent_activity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_validation/index.html#test_vote_validation.test_vote_mixed_existing_and_nonexistent"><code class="docutils literal notranslate"><span class="pre">test_vote_mixed_existing_and_nonexistent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_validation/index.html#test_vote_validation.test_vote_multiple_existing_activities"><code class="docutils literal notranslate"><span class="pre">test_vote_multiple_existing_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_validation/index.html#test_vote_validation.client"><code class="docutils literal notranslate"><span class="pre">client</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/recommendation_service/index.html">recommendation_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/recommendation_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/recommendation_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/recommendation_service/index.html#recommendation_service.calculate_user_similarity"><code class="docutils literal notranslate"><span class="pre">calculate_user_similarity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/recommendation_service/index.html#recommendation_service.find_similar_users"><code class="docutils literal notranslate"><span class="pre">find_similar_users()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/recommendation_service/index.html#recommendation_service.get_collaborative_recommendations"><code class="docutils literal notranslate"><span class="pre">get_collaborative_recommendations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/recommendation_service/index.html#recommendation_service.get_user_activity_preferences"><code class="docutils literal notranslate"><span class="pre">get_user_activity_preferences()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/activity_lookup_service/index.html">activity_lookup_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/activity_lookup_service/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/activity_lookup_service/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activity_lookup_service/index.html#activity_lookup_service.activity_exists"><code class="docutils literal notranslate"><span class="pre">activity_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activity_lookup_service/index.html#activity_lookup_service.get_activity_by_id"><code class="docutils literal notranslate"><span class="pre">get_activity_by_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/activity_lookup_service/index.html#activity_lookup_service.get_all_activity_ids"><code class="docutils literal notranslate"><span class="pre">get_all_activity_ids()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_personalized_activities/index.html">test_personalized_activities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_personalized_activities/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_personalized_activities/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_personalized_activities/index.html#test_personalized_activities.test_activities_by_weather_with_user"><code class="docutils literal notranslate"><span class="pre">test_activities_by_weather_with_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_personalized_activities/index.html#test_personalized_activities.test_personalized_activities"><code class="docutils literal notranslate"><span class="pre">test_personalized_activities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_personalized_activities/index.html#test_personalized_activities.test_weather_recommendation"><code class="docutils literal notranslate"><span class="pre">test_weather_recommendation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html">test_vote_endpoint_validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html#attributes">Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.setup_test_data"><code class="docutils literal notranslate"><span class="pre">setup_test_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.test_get_votes_for_existing_activity"><code class="docutils literal notranslate"><span class="pre">test_get_votes_for_existing_activity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.test_get_votes_for_existing_activity_with_no_votes"><code class="docutils literal notranslate"><span class="pre">test_get_votes_for_existing_activity_with_no_votes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.test_get_votes_for_nonexistent_activity"><code class="docutils literal notranslate"><span class="pre">test_get_votes_for_nonexistent_activity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.client"><code class="docutils literal notranslate"><span class="pre">client</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Weather Activity Recommendation API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__class_vars__">__class_vars__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__class_vars__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__class_vars__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__class_vars__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__class_vars__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__private_attributes__">__private_attributes__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__private_attributes__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__private_attributes__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__private_attributes__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__private_attributes__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_complete__">__pydantic_complete__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_complete__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_complete__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_complete__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_complete__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_computed_fields__">__pydantic_computed_fields__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_computed_fields__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_computed_fields__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_computed_fields__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_computed_fields__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_core_schema__">__pydantic_core_schema__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_core_schema__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_core_schema__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_core_schema__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_core_schema__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_custom_init__">__pydantic_custom_init__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_custom_init__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_custom_init__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_custom_init__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_custom_init__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_decorators__">__pydantic_decorators__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_decorators__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_decorators__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_decorators__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_decorators__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_extra__">__pydantic_extra__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_extra__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_extra__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_extra__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_extra__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_fields__">__pydantic_fields__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_fields__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_fields__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_fields__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_fields__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_fields_set__">__pydantic_fields_set__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_fields_set__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_fields_set__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_fields_set__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_fields_set__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_generic_metadata__">__pydantic_generic_metadata__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_generic_metadata__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_generic_metadata__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_generic_metadata__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_generic_metadata__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_parent_namespace__">__pydantic_parent_namespace__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_parent_namespace__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_parent_namespace__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_parent_namespace__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_parent_namespace__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_post_init__">__pydantic_post_init__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_post_init__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_post_init__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_post_init__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_post_init__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_private__">__pydantic_private__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_private__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_private__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_private__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_private__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_root_model__">__pydantic_root_model__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_root_model__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_root_model__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_root_model__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_root_model__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_serializer__">__pydantic_serializer__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_serializer__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_serializer__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_serializer__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_serializer__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__pydantic_validator__">__pydantic_validator__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__pydantic_validator__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__pydantic_validator__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__pydantic_validator__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__pydantic_validator__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.__signature__">__signature__ (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.__signature__">(user.User attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.__signature__">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.__signature__">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.__signature__">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/app/routes/admin/index.html#app.routes.admin.ACTIVITIES_FILE">ACTIVITIES_FILE (in module app.routes.admin)</a>
+</li>
+      <li>
+    activities_service
+
+      <ul>
+        <li><a href="autoapi/activities_service/index.html#module-activities_service">module</a>
+</li>
+      </ul></li>
+      <li>
+    activity
+
+      <ul>
+        <li><a href="autoapi/activity/index.html#module-activity">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity">Activity (class in activity)</a>
+</li>
+      <li><a href="autoapi/activity_lookup_service/index.html#activity_lookup_service.activity_exists">activity_exists() (in module activity_lookup_service)</a>
+</li>
+      <li><a href="autoapi/vote/index.html#vote.ActivityVote.activity_id">activity_id (vote.ActivityVote attribute)</a>
+</li>
+      <li>
+    activity_lookup_service
+
+      <ul>
+        <li><a href="autoapi/activity_lookup_service/index.html#module-activity_lookup_service">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/user/index.html#user.User.activity_preference">activity_preference (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.activity_preference">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.activity_preference">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.ActivityType">ActivityType (class in activity)</a>
+</li>
+      <li><a href="autoapi/vote/index.html#vote.ActivityVote">ActivityVote (class in vote)</a>
+</li>
+      <li><a href="autoapi/app/routes/admin/index.html#app.routes.admin.add_activity">add_activity() (in module app.routes.admin)</a>
+</li>
+      <li><a href="autoapi/vote_service/index.html#vote_service.add_vote">add_vote() (in module vote_service)</a>
+</li>
+      <li><a href="autoapi/app/routes/admin/index.html#app.routes.admin.admin_activities">admin_activities (in module app.routes.admin)</a>
+</li>
+      <li><a href="autoapi/user/index.html#user.UserRole.administrator">administrator (user.UserRole attribute)</a>
+</li>
+      <li><a href="autoapi/air_quality_service/index.html#air_quality_service.air_quality_config">air_quality_config (in module air_quality_service)</a>
+</li>
+      <li>
+    air_quality_service
+
+      <ul>
+        <li><a href="autoapi/air_quality_service/index.html#module-air_quality_service">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/weather/index.html#weather.AirQuality">AirQuality (class in weather)</a>
+</li>
+      <li><a href="autoapi/air_quality_service/index.html#air_quality_service.API_KEY">API_KEY (in module air_quality_service)</a>
+
+      <ul>
+        <li><a href="autoapi/ticketmaster_service/index.html#ticketmaster_service.API_KEY">(in module ticketmaster_service)</a>
+</li>
+        <li><a href="autoapi/weather_service/index.html#weather_service.API_KEY">(in module weather_service)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    app
+
+      <ul>
+        <li><a href="autoapi/app/index.html#module-app">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/app/main/index.html#app.main.app">app (in module app.main)</a>
+</li>
+      <li>
+    app.main
+
+      <ul>
+        <li><a href="autoapi/app/main/index.html#module-app.main">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.models
+
+      <ul>
+        <li><a href="autoapi/app/models/index.html#module-app.models">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.models.requests
+
+      <ul>
+        <li><a href="autoapi/app/models/requests/index.html#module-app.models.requests">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.routes
+
+      <ul>
+        <li><a href="autoapi/app/routes/index.html#module-app.routes">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.routes.activities
+
+      <ul>
+        <li><a href="autoapi/app/routes/activities/index.html#module-app.routes.activities">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.routes.admin
+
+      <ul>
+        <li><a href="autoapi/app/routes/admin/index.html#module-app.routes.admin">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.routes.air_quality
+
+      <ul>
+        <li><a href="autoapi/app/routes/air_quality/index.html#module-app.routes.air_quality">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.routes.user
+
+      <ul>
+        <li><a href="autoapi/app/routes/user/index.html#module-app.routes.user">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.routes.users
+
+      <ul>
+        <li><a href="autoapi/app/routes/users/index.html#module-app.routes.users">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.routes.vote
+
+      <ul>
+        <li><a href="autoapi/app/routes/vote/index.html#module-app.routes.vote">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.routes.weather
+
+      <ul>
+        <li><a href="autoapi/app/routes/weather/index.html#module-app.routes.weather">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/weather/index.html#weather.AirQuality.aqi">aqi (weather.AirQuality attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/user/index.html#user.User.birth_date">birth_date (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.birth_date">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.birth_date">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VoteService.build_graph">build_graph() (vote_service.VoteService method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/weather/index.html#weather.AirQuality.cached">cached (weather.AirQuality attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/weather/index.html#weather.Weather.cached">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.cached">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/recommendation_service/index.html#recommendation_service.calculate_user_similarity">calculate_user_similarity() (in module recommendation_service)</a>
+</li>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VoteService.candidates">candidates (vote_service.VoteService attribute)</a>
+</li>
+      <li><a href="autoapi/weather/index.html#weather.AirQuality.category">category (weather.AirQuality attribute)</a>
+</li>
+      <li><a href="autoapi/user/index.html#user.User.city">city (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.city">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.city">(user.UserUpdate attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.city">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.city">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.city">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.client">client (in module test_admin_uc5_uc6)</a>
+
+      <ul>
+        <li><a href="autoapi/test_dynamic/index.html#test_dynamic.client">(in module test_dynamic)</a>
+</li>
+        <li><a href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.client">(in module test_vote_endpoint_validation)</a>
+</li>
+        <li><a href="autoapi/test_vote_validation/index.html#test_vote_validation.client">(in module test_vote_validation)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.ActivityType.community">community (activity.ActivityType attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/weather/index.html#weather.Weather.condition">condition (weather.Weather attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.condition">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.CONFIDENCE_THRESHOLD">CONFIDENCE_THRESHOLD (in module activities_service)</a>
+</li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.config">config (in module activities_service)</a>
+
+      <ul>
+        <li><a href="autoapi/air_quality_service/index.html#air_quality_service.config">(in module air_quality_service)</a>
+</li>
+        <li><a href="autoapi/ticketmaster_service/index.html#ticketmaster_service.config">(in module ticketmaster_service)</a>
+</li>
+        <li><a href="autoapi/weather_service/index.html#weather_service.config">(in module weather_service)</a>
+</li>
+      </ul></li>
+      <li>
+    config_service
+
+      <ul>
+        <li><a href="autoapi/config_service/index.html#module-config_service">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/config_service/index.html#config_service.ConfigService">ConfigService (class in config_service)</a>
+</li>
+      <li><a href="autoapi/user/index.html#user.User.country">country (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.country">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.country">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/app/routes/user/index.html#app.routes.user.create_user">create_user() (in module app.routes.user)</a>
+
+      <ul>
+        <li><a href="autoapi/user_service/index.html#user_service.create_user">(in module user_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/user/index.html#user.User.created_at">created_at (user.User attribute)</a>
+</li>
+      <li><a href="autoapi/activity/index.html#activity.ActivityType.cultural">cultural (activity.ActivityType attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/user_service/index.html#user_service.DATA_PATH">DATA_PATH (in module user_service)</a>
+</li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.date">date (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.date">(weather.AirQuality attribute)</a>
+</li>
+        <li><a href="autoapi/weather/index.html#weather.Weather.date">(weather.Weather attribute)</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.date">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/test_dynamic/index.html#test_dynamic.DEFAULT_JSON">DEFAULT_JSON (in module test_dynamic)</a>
+</li>
+      <li><a href="autoapi/test_dynamic/index.html#test_dynamic.DEFAULT_QUERY">DEFAULT_QUERY (in module test_dynamic)</a>
+</li>
+      <li><a href="autoapi/app/routes/user/index.html#app.routes.user.delete_user">delete_user() (in module app.routes.user)</a>
+
+      <ul>
+        <li><a href="autoapi/user_service/index.html#user_service.delete_user">(in module user_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.description">description (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/weather/index.html#weather.AirQuality.description">(weather.AirQuality attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/user/index.html#user.User.email">email (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.email">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.email">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/ticketmaster_service/index.html#ticketmaster_service.events_config">events_config (in module ticketmaster_service)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/ticketmaster_service/index.html#ticketmaster_service.fetch_activities">fetch_activities() (in module ticketmaster_service)</a>
+</li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.fetch_activities_by_weather">fetch_activities_by_weather() (in module activities_service)</a>
+</li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.fetch_activities_by_weather_ordered_by_votes">fetch_activities_by_weather_ordered_by_votes() (in module activities_service)</a>
+</li>
+      <li><a href="autoapi/air_quality_service/index.html#air_quality_service.fetch_air_quality">fetch_air_quality() (in module air_quality_service)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/weather_service/index.html#weather_service.fetch_weather">fetch_weather() (in module weather_service)</a>
+</li>
+      <li><a href="autoapi/recommendation_service/index.html#recommendation_service.find_similar_users">find_similar_users() (in module recommendation_service)</a>
+</li>
+      <li><a href="autoapi/user/index.html#user.User.first_name">first_name (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.first_name">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.first_name">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/user/index.html#user.User.gender">gender (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.gender">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.gender">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/config_service/index.html#config_service.ConfigService.get">get() (config_service.ConfigService method)</a>
+</li>
+      <li><a href="autoapi/app/routes/activities/index.html#app.routes.activities.get_activities_by_votes">get_activities_by_votes() (in module app.routes.activities)</a>
+</li>
+      <li><a href="autoapi/app/routes/activities/index.html#app.routes.activities.get_activities_by_weather">get_activities_by_weather() (in module app.routes.activities)</a>
+</li>
+      <li><a href="autoapi/activity_lookup_service/index.html#activity_lookup_service.get_activity_by_id">get_activity_by_id() (in module activity_lookup_service)</a>
+</li>
+      <li><a href="autoapi/app/routes/vote/index.html#app.routes.vote.get_activity_ranking">get_activity_ranking() (in module app.routes.vote)</a>
+
+      <ul>
+        <li><a href="autoapi/vote_service/index.html#vote_service.get_activity_ranking">(in module vote_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/app/routes/vote/index.html#app.routes.vote.get_activity_votes">get_activity_votes() (in module app.routes.vote)</a>
+
+      <ul>
+        <li><a href="autoapi/vote_service/index.html#vote_service.get_activity_votes">(in module vote_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.get_admin_activities">get_admin_activities() (in module activities_service)</a>
+</li>
+      <li><a href="autoapi/app/routes/air_quality/index.html#app.routes.air_quality.get_air_quality">get_air_quality() (in module app.routes.air_quality)</a>
+</li>
+      <li><a href="autoapi/activity_lookup_service/index.html#activity_lookup_service.get_all_activity_ids">get_all_activity_ids() (in module activity_lookup_service)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/air_quality_service/index.html#air_quality_service.get_aqi_category">get_aqi_category() (in module air_quality_service)</a>
+</li>
+      <li><a href="autoapi/recommendation_service/index.html#recommendation_service.get_collaborative_recommendations">get_collaborative_recommendations() (in module recommendation_service)</a>
+</li>
+      <li><a href="autoapi/config_service/index.html#config_service.get_config">get_config() (in module config_service)</a>
+</li>
+      <li><a href="autoapi/app/routes/admin/index.html#app.routes.admin.get_configuration">get_configuration() (in module app.routes.admin)</a>
+</li>
+      <li><a href="autoapi/config_service/index.html#config_service.ConfigService.get_data_source_config">get_data_source_config() (config_service.ConfigService method)</a>
+</li>
+      <li><a href="autoapi/app/routes/activities/index.html#app.routes.activities.get_personalized_activities">get_personalized_activities() (in module app.routes.activities)</a>
+</li>
+      <li><a href="autoapi/config_service/index.html#config_service.ConfigService.get_recommendation_config">get_recommendation_config() (config_service.ConfigService method)</a>
+</li>
+      <li><a href="autoapi/app/routes/activities/index.html#app.routes.activities.get_recommended_activities">get_recommended_activities() (in module app.routes.activities)</a>
+</li>
+      <li><a href="autoapi/app/routes/user/index.html#app.routes.user.get_user">get_user() (in module app.routes.user)</a>
+
+      <ul>
+        <li><a href="autoapi/user_service/index.html#user_service.get_user">(in module user_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/recommendation_service/index.html#recommendation_service.get_user_activity_preferences">get_user_activity_preferences() (in module recommendation_service)</a>
+</li>
+      <li><a href="autoapi/user_service/index.html#user_service.get_user_by_id">get_user_by_id() (in module user_service)</a>
+</li>
+      <li><a href="autoapi/app/routes/weather/index.html#app.routes.weather.get_weather">get_weather() (in module app.routes.weather)</a>
+</li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.get_weather_recommendation">get_weather_recommendation() (in module activities_service)</a>
+</li>
+      <li><a href="autoapi/app/routes/activities/index.html#app.routes.activities.get_weather_recommendation_endpoint">get_weather_recommendation_endpoint() (in module app.routes.activities)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/activity/index.html#activity.Activity.id">id (activity.Activity attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.User.id">(user.User attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.INDOOR_WEATHER_CONDITIONS">INDOOR_WEATHER_CONDITIONS (in module activities_service)</a>, <a href="autoapi/activities_service/index.html#id0">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/user/index.html#user.User.interests">interests (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.interests">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.interests">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.is_indoor">is_indoor (activity.Activity attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/user/index.html#user.User.last_name">last_name (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.last_name">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.last_name">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/app/routes/admin/index.html#app.routes.admin.list_activities">list_activities() (in module app.routes.admin)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/app/routes/admin/index.html#app.routes.admin.list_admin_activities">list_admin_activities() (in module app.routes.admin)</a>
+</li>
+      <li><a href="autoapi/user_service/index.html#user_service.list_users">list_users() (in module user_service)</a>
+</li>
+      <li><a href="autoapi/app/routes/vote/index.html#app.routes.vote.list_votes">list_votes() (in module app.routes.vote)</a>
+
+      <ul>
+        <li><a href="autoapi/vote_service/index.html#vote_service.list_votes">(in module vote_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.location">location (activity.Activity attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/ticketmaster_service/index.html#ticketmaster_service.MAX_RESULTS">MAX_RESULTS (in module ticketmaster_service)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="autoapi/activities_service/index.html#module-activities_service">activities_service</a>
+</li>
+        <li><a href="autoapi/activity/index.html#module-activity">activity</a>
+</li>
+        <li><a href="autoapi/activity_lookup_service/index.html#module-activity_lookup_service">activity_lookup_service</a>
+</li>
+        <li><a href="autoapi/air_quality_service/index.html#module-air_quality_service">air_quality_service</a>
+</li>
+        <li><a href="autoapi/app/index.html#module-app">app</a>
+</li>
+        <li><a href="autoapi/app/main/index.html#module-app.main">app.main</a>
+</li>
+        <li><a href="autoapi/app/models/index.html#module-app.models">app.models</a>
+</li>
+        <li><a href="autoapi/app/models/requests/index.html#module-app.models.requests">app.models.requests</a>
+</li>
+        <li><a href="autoapi/app/routes/index.html#module-app.routes">app.routes</a>
+</li>
+        <li><a href="autoapi/app/routes/activities/index.html#module-app.routes.activities">app.routes.activities</a>
+</li>
+        <li><a href="autoapi/app/routes/admin/index.html#module-app.routes.admin">app.routes.admin</a>
+</li>
+        <li><a href="autoapi/app/routes/air_quality/index.html#module-app.routes.air_quality">app.routes.air_quality</a>
+</li>
+        <li><a href="autoapi/app/routes/user/index.html#module-app.routes.user">app.routes.user</a>
+</li>
+        <li><a href="autoapi/app/routes/users/index.html#module-app.routes.users">app.routes.users</a>
+</li>
+        <li><a href="autoapi/app/routes/vote/index.html#module-app.routes.vote">app.routes.vote</a>
+</li>
+        <li><a href="autoapi/app/routes/weather/index.html#module-app.routes.weather">app.routes.weather</a>
+</li>
+        <li><a href="autoapi/config_service/index.html#module-config_service">config_service</a>
+</li>
+        <li><a href="autoapi/recommendation_service/index.html#module-recommendation_service">recommendation_service</a>
+</li>
+        <li><a href="autoapi/test_activities/index.html#module-test_activities">test_activities</a>
+</li>
+        <li><a href="autoapi/test_admin/index.html#module-test_admin">test_admin</a>
+</li>
+        <li><a href="autoapi/test_admin_uc5_uc6/index.html#module-test_admin_uc5_uc6">test_admin_uc5_uc6</a>
+</li>
+        <li><a href="autoapi/test_air_quality/index.html#module-test_air_quality">test_air_quality</a>
+</li>
+        <li><a href="autoapi/test_dynamic/index.html#module-test_dynamic">test_dynamic</a>
+</li>
+        <li><a href="autoapi/test_main/index.html#module-test_main">test_main</a>
+</li>
+        <li><a href="autoapi/test_personalized_activities/index.html#module-test_personalized_activities">test_personalized_activities</a>
+</li>
+        <li><a href="autoapi/test_testing/index.html#module-test_testing">test_testing</a>
+</li>
+        <li><a href="autoapi/test_vote/index.html#module-test_vote">test_vote</a>
+</li>
+        <li><a href="autoapi/test_vote_endpoint_validation/index.html#module-test_vote_endpoint_validation">test_vote_endpoint_validation</a>
+</li>
+        <li><a href="autoapi/test_vote_validation/index.html#module-test_vote_validation">test_vote_validation</a>
+</li>
+        <li><a href="autoapi/ticketmaster_service/index.html#module-ticketmaster_service">ticketmaster_service</a>
+</li>
+        <li><a href="autoapi/user/index.html#module-user">user</a>
+</li>
+        <li><a href="autoapi/user_service/index.html#module-user_service">user_service</a>
+</li>
+        <li><a href="autoapi/vote/index.html#module-vote">vote</a>
+</li>
+        <li><a href="autoapi/vote_service/index.html#module-vote_service">vote_service</a>
+</li>
+        <li><a href="autoapi/weather/index.html#module-weather">weather</a>
+</li>
+        <li><a href="autoapi/weather_response/index.html#module-weather_response">weather_response</a>
+</li>
+        <li><a href="autoapi/weather_service/index.html#module-weather_service">weather_service</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/activity/index.html#activity.Activity.name">name (activity.Activity attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/air_quality_service/index.html#air_quality_service.OPENAQ_URL">OPENAQ_URL (in module air_quality_service)</a>
+</li>
+      <li><a href="autoapi/weather_service/index.html#weather_service.OPENWEATHERMAP_URL">OPENWEATHERMAP_URL (in module weather_service)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VoteService.order_votes">order_votes() (vote_service.VoteService method)</a>
+</li>
+      <li><a href="autoapi/activity/index.html#activity.ActivityType.other">other (activity.ActivityType attribute)</a>
+</li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.OUTDOOR_WEATHER_CONDITIONS">OUTDOOR_WEATHER_CONDITIONS (in module activities_service)</a>, <a href="autoapi/activities_service/index.html#id1">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VoteService.pairwise_counts">pairwise_counts (vote_service.VoteService attribute)</a>
+</li>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VoteService.parse">parse() (vote_service.VoteService method)</a>
+</li>
+      <li><a href="autoapi/test_dynamic/index.html#test_dynamic.path">path (in module test_dynamic)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/user/index.html#user.User.phone_number">phone_number (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.phone_number">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.phone_number">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/activities_service/index.html#activities_service.rec_config">rec_config (in module activities_service)</a>
+</li>
+      <li>
+    recommendation_service
+
+      <ul>
+        <li><a href="autoapi/recommendation_service/index.html#module-recommendation_service">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/config_service/index.html#config_service.ConfigService.reload">reload() (config_service.ConfigService method)</a>
+</li>
+      <li><a href="autoapi/user_service/index.html#user_service.reset_store">reset_store() (in module user_service)</a>
+</li>
+      <li><a href="autoapi/app/routes/user/index.html#app.routes.user.RESET_TOKEN">RESET_TOKEN (in module app.routes.user)</a>
+</li>
+      <li><a href="autoapi/app/routes/user/index.html#app.routes.user.reset_users">reset_users() (in module app.routes.user)</a>
+</li>
+      <li><a href="autoapi/test_vote_validation/index.html#test_vote_validation.reset_votes">reset_votes() (in module test_vote_validation)</a>
+
+      <ul>
+        <li><a href="autoapi/vote_service/index.html#vote_service.reset_votes">(in module vote_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/user/index.html#user.User.role">role (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.role">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.role">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/test_dynamic/index.html#test_dynamic.ROUTE_OVERRIDES">ROUTE_OVERRIDES (in module test_dynamic)</a>
+</li>
+      <li><a href="autoapi/app/routes/activities/index.html#app.routes.activities.router">router (in module app.routes.activities)</a>
+
+      <ul>
+        <li><a href="autoapi/app/routes/admin/index.html#app.routes.admin.router">(in module app.routes.admin)</a>
+</li>
+        <li><a href="autoapi/app/routes/air_quality/index.html#app.routes.air_quality.router">(in module app.routes.air_quality)</a>
+</li>
+        <li><a href="autoapi/app/routes/user/index.html#app.routes.user.router">(in module app.routes.user)</a>
+</li>
+        <li><a href="autoapi/app/routes/users/index.html#app.routes.users.router">(in module app.routes.users)</a>
+</li>
+        <li><a href="autoapi/app/routes/vote/index.html#app.routes.vote.router">(in module app.routes.vote)</a>
+</li>
+        <li><a href="autoapi/app/routes/weather/index.html#app.routes.weather.router">(in module app.routes.weather)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/vote/index.html#vote.ActivityVote.score">score (vote.ActivityVote attribute)</a>
+</li>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VoteService.score">score() (vote_service.VoteService method)</a>
+</li>
+      <li><a href="autoapi/test_vote_validation/index.html#test_vote_validation.setup_admin_activities">setup_admin_activities() (in module test_vote_validation)</a>
+</li>
+      <li><a href="autoapi/test_vote/index.html#test_vote.setup_test_activities">setup_test_activities() (in module test_vote)</a>
+</li>
+      <li><a href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.setup_test_data">setup_test_data() (in module test_vote_endpoint_validation)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/test_dynamic/index.html#test_dynamic.SKIP_PREFIXES">SKIP_PREFIXES (in module test_dynamic)</a>
+</li>
+      <li><a href="autoapi/activity/index.html#activity.ActivityType.sports">sports (activity.ActivityType attribute)</a>
+</li>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VoteService.strongest_paths">strongest_paths (vote_service.VoteService attribute)</a>
+</li>
+      <li><a href="autoapi/app/routes/vote/index.html#app.routes.vote.submit_vote">submit_vote() (in module app.routes.vote)</a>
+</li>
+      <li><a href="autoapi/user/index.html#user.UserRole.subscriber">subscriber (user.UserRole attribute)</a>
+</li>
+      <li><a href="autoapi/activities_service/index.html#activities_service.suggest_personalized_activities">suggest_personalized_activities() (in module activities_service)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/weather/index.html#weather.Weather.temperature">temperature (weather.Weather attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse.temperature">(weather_response.WeatherResponse attribute)</a>
+</li>
+      </ul></li>
+      <li>
+    test_activities
+
+      <ul>
+        <li><a href="autoapi/test_activities/index.html#module-test_activities">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_personalized_activities/index.html#test_personalized_activities.test_activities_by_weather_with_user">test_activities_by_weather_with_user() (in module test_personalized_activities)</a>
+</li>
+      <li><a href="autoapi/test_admin/index.html#test_admin.test_add_admin_activity_and_list">test_add_admin_activity_and_list() (in module test_admin)</a>
+</li>
+      <li>
+    test_admin
+
+      <ul>
+        <li><a href="autoapi/test_admin/index.html#module-test_admin">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_admin_add_custom_activity">test_admin_add_custom_activity() (in module test_admin_uc5_uc6)</a>
+</li>
+      <li><a href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_admin_list_activities_requires_admin">test_admin_list_activities_requires_admin() (in module test_admin_uc5_uc6)</a>
+</li>
+      <li><a href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_admin_list_activities_with_admin_user">test_admin_list_activities_with_admin_user() (in module test_admin_uc5_uc6)</a>
+</li>
+      <li>
+    test_admin_uc5_uc6
+
+      <ul>
+        <li><a href="autoapi/test_admin_uc5_uc6/index.html#module-test_admin_uc5_uc6">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_admin_view_configuration">test_admin_view_configuration() (in module test_admin_uc5_uc6)</a>
+</li>
+      <li>
+    test_air_quality
+
+      <ul>
+        <li><a href="autoapi/test_air_quality/index.html#module-test_air_quality">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_admin_uc5_uc6/index.html#test_admin_uc5_uc6.test_config_view_requires_admin">test_config_view_requires_admin() (in module test_admin_uc5_uc6)</a>
+</li>
+      <li>
+    test_dynamic
+
+      <ul>
+        <li><a href="autoapi/test_dynamic/index.html#module-test_dynamic">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_activities/index.html#test_activities.test_get_activities">test_get_activities() (in module test_activities)</a>
+</li>
+      <li><a href="autoapi/test_activities/index.html#test_activities.test_get_activities_by_weather">test_get_activities_by_weather() (in module test_activities)</a>
+</li>
+      <li><a href="autoapi/test_vote/index.html#test_vote.test_get_activity_ranking">test_get_activity_ranking() (in module test_vote)</a>
+</li>
+      <li><a href="autoapi/test_air_quality/index.html#test_air_quality.test_get_air_quality">test_get_air_quality() (in module test_air_quality)</a>
+</li>
+      <li><a href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.test_get_votes_for_existing_activity">test_get_votes_for_existing_activity() (in module test_vote_endpoint_validation)</a>
+</li>
+      <li><a href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.test_get_votes_for_existing_activity_with_no_votes">test_get_votes_for_existing_activity_with_no_votes() (in module test_vote_endpoint_validation)</a>
+</li>
+      <li><a href="autoapi/test_vote_endpoint_validation/index.html#test_vote_endpoint_validation.test_get_votes_for_nonexistent_activity">test_get_votes_for_nonexistent_activity() (in module test_vote_endpoint_validation)</a>
+</li>
+      <li><a href="autoapi/test_main/index.html#test_main.test_get_weather">test_get_weather() (in module test_main)</a>
+</li>
+      <li>
+    test_main
+
+      <ul>
+        <li><a href="autoapi/test_main/index.html#module-test_main">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    test_personalized_activities
+
+      <ul>
+        <li><a href="autoapi/test_personalized_activities/index.html#module-test_personalized_activities">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_personalized_activities/index.html#test_personalized_activities.test_personalized_activities">test_personalized_activities() (in module test_personalized_activities)</a>
+</li>
+      <li><a href="autoapi/test_dynamic/index.html#test_dynamic.test_route_responsive">test_route_responsive() (in module test_dynamic)</a>
+</li>
+      <li>
+    test_testing
+
+      <ul>
+        <li><a href="autoapi/test_testing/index.html#module-test_testing">module</a>
+</li>
+      </ul></li>
+      <li>
+    test_vote
+
+      <ul>
+        <li><a href="autoapi/test_vote/index.html#module-test_vote">module</a>
+</li>
+      </ul></li>
+      <li>
+    test_vote_endpoint_validation
+
+      <ul>
+        <li><a href="autoapi/test_vote_endpoint_validation/index.html#module-test_vote_endpoint_validation">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_vote/index.html#test_vote.test_vote_for_activities">test_vote_for_activities() (in module test_vote)</a>
+</li>
+      <li><a href="autoapi/test_vote_validation/index.html#test_vote_validation.test_vote_for_existing_admin_activity">test_vote_for_existing_admin_activity() (in module test_vote_validation)</a>
+</li>
+      <li><a href="autoapi/test_vote_validation/index.html#test_vote_validation.test_vote_for_nonexistent_activity">test_vote_for_nonexistent_activity() (in module test_vote_validation)</a>
+</li>
+      <li><a href="autoapi/test_vote_validation/index.html#test_vote_validation.test_vote_mixed_existing_and_nonexistent">test_vote_mixed_existing_and_nonexistent() (in module test_vote_validation)</a>
+</li>
+      <li><a href="autoapi/test_vote_validation/index.html#test_vote_validation.test_vote_multiple_existing_activities">test_vote_multiple_existing_activities() (in module test_vote_validation)</a>
+</li>
+      <li>
+    test_vote_validation
+
+      <ul>
+        <li><a href="autoapi/test_vote_validation/index.html#module-test_vote_validation">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/test_vote/index.html#test_vote.test_vote_with_duplicate_activity">test_vote_with_duplicate_activity() (in module test_vote)</a>
+</li>
+      <li><a href="autoapi/test_vote/index.html#test_vote.test_vote_with_invalid_score">test_vote_with_invalid_score() (in module test_vote)</a>
+</li>
+      <li><a href="autoapi/test_personalized_activities/index.html#test_personalized_activities.test_weather_recommendation">test_weather_recommendation() (in module test_personalized_activities)</a>
+</li>
+      <li>
+    ticketmaster_service
+
+      <ul>
+        <li><a href="autoapi/ticketmaster_service/index.html#module-ticketmaster_service">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/ticketmaster_service/index.html#ticketmaster_service.TICKETMASTER_URL">TICKETMASTER_URL (in module ticketmaster_service)</a>
+</li>
+      <li><a href="autoapi/air_quality_service/index.html#air_quality_service.TIMEOUT">TIMEOUT (in module air_quality_service)</a>
+
+      <ul>
+        <li><a href="autoapi/ticketmaster_service/index.html#ticketmaster_service.TIMEOUT">(in module ticketmaster_service)</a>
+</li>
+        <li><a href="autoapi/weather_service/index.html#weather_service.TIMEOUT">(in module weather_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/activity/index.html#activity.Activity.type">type (activity.Activity attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/app/routes/user/index.html#app.routes.user.update_user">update_user() (in module app.routes.user)</a>
+
+      <ul>
+        <li><a href="autoapi/user_service/index.html#user_service.update_user">(in module user_service)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/user/index.html#user.User.updated_at">updated_at (user.User attribute)</a>
+</li>
+      <li>
+    user
+
+      <ul>
+        <li><a href="autoapi/user/index.html#module-user">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/user/index.html#user.User">User (class in user)</a>
+</li>
+      <li><a href="autoapi/vote/index.html#vote.ActivityVote.user_id">user_id (vote.ActivityVote attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    user_service
+
+      <ul>
+        <li><a href="autoapi/user_service/index.html#module-user_service">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/user/index.html#user.UserCreate">UserCreate (class in user)</a>
+</li>
+      <li><a href="autoapi/user/index.html#user.User.username">username (user.User attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/user/index.html#user.UserCreate.username">(user.UserCreate attribute)</a>
+</li>
+        <li><a href="autoapi/user/index.html#user.UserUpdate.username">(user.UserUpdate attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/user/index.html#user.UserRole">UserRole (class in user)</a>
+</li>
+      <li><a href="autoapi/user/index.html#user.UserUpdate">UserUpdate (class in user)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/vote/index.html#vote.Vote.validate_no_duplicate_activities">validate_no_duplicate_activities() (vote.Vote class method)</a>
+</li>
+      <li><a href="autoapi/vote/index.html#vote.ActivityVote.validate_score">validate_score() (vote.ActivityVote class method)</a>
+</li>
+      <li>
+    vote
+
+      <ul>
+        <li><a href="autoapi/vote/index.html#module-vote">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/vote/index.html#vote.Vote">Vote (class in vote)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    vote_service
+
+      <ul>
+        <li><a href="autoapi/vote_service/index.html#module-vote_service">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/vote/index.html#vote.Vote.votes">votes (vote.Vote attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/vote_service/index.html#vote_service.VoteService.votes">(vote_service.VoteService attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VOTES_FILE">VOTES_FILE (in module vote_service)</a>
+</li>
+      <li><a href="autoapi/vote_service/index.html#vote_service.VoteService">VoteService (class in vote_service)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    weather
+
+      <ul>
+        <li><a href="autoapi/weather/index.html#module-weather">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/weather/index.html#weather.Weather">Weather (class in weather)</a>
+</li>
+      <li><a href="autoapi/weather_service/index.html#weather_service.weather_config">weather_config (in module weather_service)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    weather_response
+
+      <ul>
+        <li><a href="autoapi/weather_response/index.html#module-weather_response">module</a>
+</li>
+      </ul></li>
+      <li>
+    weather_service
+
+      <ul>
+        <li><a href="autoapi/weather_service/index.html#module-weather_service">module</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/weather_response/index.html#weather_response.WeatherResponse">WeatherResponse (class in weather_response)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, FastAPI Project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

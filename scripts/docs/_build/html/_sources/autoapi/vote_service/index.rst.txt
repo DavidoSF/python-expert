@@ -1,0 +1,119 @@
+vote_service
+============
+
+.. py:module:: vote_service
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   vote_service.VOTES_FILE
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   vote_service.VoteService
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   vote_service.add_vote
+   vote_service.get_activity_ranking
+   vote_service.get_activity_votes
+   vote_service.list_votes
+   vote_service.reset_votes
+
+
+Module Contents
+---------------
+
+.. py:class:: VoteService
+
+   .. py:method:: build_graph() -> None
+
+      Build the directed graph of strongest paths between candidates using the Schulze method.
+      For each pair of candidates, finds the strongest path (maximum minimum strength along path).
+
+
+
+   .. py:method:: order_votes() -> List[int]
+
+      Determine the final ranking using the Schulze method.
+      Returns ordered list of candidate IDs from winner to loser.
+
+      :returns: Ordered list of candidate IDs
+      :rtype: List[int]
+
+
+
+   .. py:method:: parse(votes_data: List[Dict]) -> None
+
+      Parse vote data and build the initial data structures.
+
+      :param votes_data: List of vote dictionaries with 'user_id' and 'activity_ranking'
+
+
+
+   .. py:method:: score() -> None
+
+      Compute pairwise comparisons between all candidates using the Condorcet method.
+      Creates a matrix of how many times each candidate was preferred over each other.
+
+
+
+   .. py:attribute:: candidates
+      :type:  Set[int]
+
+
+   .. py:attribute:: pairwise_counts
+      :type:  Dict[int, Dict[int, int]]
+
+
+   .. py:attribute:: strongest_paths
+      :type:  Dict[int, Dict[int, int]]
+
+
+   .. py:attribute:: votes
+      :type:  List[Dict]
+      :value: []
+
+
+
+.. py:function:: add_vote(vote: Dict) -> None
+
+.. py:function:: get_activity_ranking() -> List[Dict]
+
+   Get activities ranked by average score.
+   Returns list of {activity_id, average_score, vote_count} sorted by score desc.
+
+
+.. py:function:: get_activity_votes(activity_id: int) -> List[Dict]
+
+   Get all votes for a specific activity.
+
+   :param activity_id: The ID of the activity to get votes for
+
+   :returns: List of vote dictionaries for the specified activity.
+             Returns empty list if no votes exist for this activity.
+
+
+.. py:function:: list_votes() -> List[Dict]
+
+   Get all votes.
+
+
+.. py:function:: reset_votes() -> None
+
+   Clear in-memory votes.
+
+
+.. py:data:: VOTES_FILE
+

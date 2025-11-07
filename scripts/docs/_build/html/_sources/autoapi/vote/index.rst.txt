@@ -1,0 +1,81 @@
+vote
+====
+
+.. py:module:: vote
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   vote.ActivityVote
+   vote.Vote
+
+
+Module Contents
+---------------
+
+.. py:class:: ActivityVote(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Individual vote for a single activity.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: validate_score(v)
+      :classmethod:
+
+
+      Ensure score is between 1 and 10.
+
+
+
+   .. py:attribute:: activity_id
+      :type:  int
+
+
+   .. py:attribute:: score
+      :type:  int
+
+
+   .. py:attribute:: user_id
+      :type:  int
+
+
+.. py:class:: Vote(/, **data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   Simple voting: submit one or more activity votes.
+   Each vote has a user_id, activity_id, and score (1-10).
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: validate_no_duplicate_activities(v)
+      :classmethod:
+
+
+      Ensure user doesn't vote for the same activity twice.
+
+
+
+   .. py:attribute:: votes
+      :type:  List[ActivityVote]
+
+

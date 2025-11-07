@@ -3,8 +3,8 @@ fastapi
 httpx
 pyyaml
 
-# Documentation
-sphinx>=4.0.0
-sphinx-autoapi>=2.0.0
-sphinx-rtd-theme>=1.0.0
-myst-parser>=0.18.0
+# Documentation dependencies
+sphinx
+sphinx-rtd-theme
+sphinx-autoapi
+myst-parser

@@ -1,0 +1,49 @@
+air_quality_service
+===================
+
+.. py:module:: air_quality_service
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   air_quality_service.API_KEY
+   air_quality_service.OPENAQ_URL
+   air_quality_service.TIMEOUT
+   air_quality_service.air_quality_config
+   air_quality_service.config
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   air_quality_service.fetch_air_quality
+   air_quality_service.get_aqi_category
+
+
+Module Contents
+---------------
+
+.. py:function:: fetch_air_quality(city: str, date: str, country: str = None) -> app.models.db.weather.AirQuality
+   :async:
+
+
+.. py:function:: get_aqi_category(aqi: int) -> str
+
+   Return AQI category based on standard AQI ranges
+
+
+.. py:data:: API_KEY
+
+.. py:data:: OPENAQ_URL
+
+.. py:data:: TIMEOUT
+
+.. py:data:: air_quality_config
+
+.. py:data:: config
+

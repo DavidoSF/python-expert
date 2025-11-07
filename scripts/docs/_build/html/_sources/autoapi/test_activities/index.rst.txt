@@ -1,0 +1,25 @@
+test_activities
+===============
+
+.. py:module:: test_activities
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_activities.test_get_activities
+   test_activities.test_get_activities_by_weather
+
+
+Module Contents
+---------------
+
+.. py:function:: test_get_activities()
+
+   Test that public /activities endpoint has been removed (moved to /admin/activities).
+
+
+.. py:function:: test_get_activities_by_weather()
+

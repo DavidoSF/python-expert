@@ -1,0 +1,43 @@
+activity_lookup_service
+=======================
+
+.. py:module:: activity_lookup_service
+
+.. autoapi-nested-parse::
+
+   Service for managing and retrieving activities from all sources.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   activity_lookup_service.activity_exists
+   activity_lookup_service.get_activity_by_id
+   activity_lookup_service.get_all_activity_ids
+
+
+Module Contents
+---------------
+
+.. py:function:: activity_exists(activity_id: int) -> bool
+
+   Check if an activity exists in admin activities.
+   Note: For Ticketmaster activities, they're fetched dynamically,
+   so this only checks admin activities for now.
+
+
+.. py:function:: get_activity_by_id(activity_id: int) -> Optional[app.models.db.activity.Activity]
+
+   Get an activity by ID from admin activities.
+
+
+.. py:function:: get_all_activity_ids() -> List[int]
+
+   Get all known activity IDs from all sources (Ticketmaster + admin).
+   Note: This is a snapshot of currently loaded activities.
+   In a real app, you'd query a database.
+
+

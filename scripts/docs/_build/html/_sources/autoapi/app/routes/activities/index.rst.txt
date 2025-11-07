@@ -1,0 +1,86 @@
+app.routes.activities
+=====================
+
+.. py:module:: app.routes.activities
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   app.routes.activities.router
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   app.routes.activities.get_activities_by_votes
+   app.routes.activities.get_activities_by_weather
+   app.routes.activities.get_personalized_activities
+   app.routes.activities.get_recommended_activities
+   app.routes.activities.get_weather_recommendation_endpoint
+
+
+Module Contents
+---------------
+
+.. py:function:: get_activities_by_votes(city: str, countryCode: str, date: str, weather_preference: Optional[str] = 'auto', user_id: Optional[int] = 1, max_results: Optional[int] = 20)
+   :async:
+
+
+   Get activities filtered by weather conditions and ordered by vote count.
+
+   :param city: City name
+   :param countryCode: Country code
+   :param date: Date in ISO format
+   :param weather_preference: Weather preference ("auto", "indoor", "outdoor", "all")
+   :param max_results: Maximum number of activities to return
+
+   :returns: List of activities ordered by vote count (most votes first)
+
+
+.. py:function:: get_activities_by_weather(city: str, countryCode: str, date: str, user_id: Optional[int] = None, weather_preference: Optional[str] = 'auto', max_results: Optional[int] = None)
+   :async:
+
+
+   Get activities filtered by weather conditions, optionally personalized for a user.
+
+
+.. py:function:: get_personalized_activities(city: str, countryCode: str, date: Optional[str] = '2025-11-06', user_id: Optional[int] = 1, max_results: Optional[int] = 20)
+   :async:
+
+
+   Get personalized activities based on user profile and weather conditions.
+
+
+.. py:function:: get_recommended_activities(city: str, countryCode: str, date: str, user_id: Optional[int] = 1, weather_preference: Optional[str] = 'auto', max_results: Optional[int] = 5)
+   :async:
+
+
+   Get personalized activity recommendations based on:
+   - Weather conditions
+   - Similar user preferences
+   - User profile and interests
+   - Activity voting history
+
+   :param city: City name
+   :param countryCode: Country code
+   :param date: Date in ISO format
+   :param weather_preference: Optional weather preference ("auto", "indoor", "outdoor", "all")
+   :param max_results: Maximum number of recommendations to return
+
+   :returns: List of recommended activities ordered by relevance
+
+
+.. py:function:: get_weather_recommendation_endpoint(city: str, date: str)
+   :async:
+
+
+   Get weather-based activity recommendations with confidence scores.
+
+
+.. py:data:: router
+

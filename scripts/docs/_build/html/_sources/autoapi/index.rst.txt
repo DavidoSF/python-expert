@@ -1,0 +1,36 @@
+API Reference
+=============
+
+This page contains auto-generated API reference documentation [#f1]_.
+
+.. toctree::
+   :titlesonly:
+
+   /autoapi/app/index
+   /autoapi/user/index
+   /autoapi/vote/index
+   /autoapi/weather/index
+   /autoapi/activity/index
+   /autoapi/test_main/index
+   /autoapi/test_vote/index
+   /autoapi/test_admin/index
+   /autoapi/user_service/index
+   /autoapi/vote_service/index
+   /autoapi/test_dynamic/index
+   /autoapi/test_testing/index
+   /autoapi/config_service/index
+   /autoapi/weather_service/index
+   /autoapi/test_activities/index
+   /autoapi/weather_response/index
+   /autoapi/test_air_quality/index
+   /autoapi/activities_service/index
+   /autoapi/test_admin_uc5_uc6/index
+   /autoapi/air_quality_service/index
+   /autoapi/ticketmaster_service/index
+   /autoapi/test_vote_validation/index
+   /autoapi/recommendation_service/index
+   /autoapi/activity_lookup_service/index
+   /autoapi/test_personalized_activities/index
+   /autoapi/test_vote_endpoint_validation/index
+
+.. [#f1] Created with `sphinx-autoapi <https://github.com/readthedocs/sphinx-autoapi>`_

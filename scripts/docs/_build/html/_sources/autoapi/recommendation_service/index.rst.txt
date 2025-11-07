@@ -1,0 +1,44 @@
+recommendation_service
+======================
+
+.. py:module:: recommendation_service
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   recommendation_service.calculate_user_similarity
+   recommendation_service.find_similar_users
+   recommendation_service.get_collaborative_recommendations
+   recommendation_service.get_user_activity_preferences
+
+
+Module Contents
+---------------
+
+.. py:function:: calculate_user_similarity(user1: app.models.db.user.User, user2: app.models.db.user.User) -> float
+
+   Calculate similarity score between two users based on their profiles and preferences.
+   Returns a score between 0 (completely different) and 1 (very similar).
+
+
+.. py:function:: find_similar_users(user: app.models.db.user.User, min_similarity: float = 0.3) -> List[Tuple[app.models.db.user.User, float]]
+
+   Find users similar to the given user.
+   Returns list of (user, similarity_score) tuples sorted by similarity.
+
+
+.. py:function:: get_collaborative_recommendations(user: app.models.db.user.User, current_activities: List[app.models.db.activity.Activity], max_recommendations: int = 5) -> List[Tuple[app.models.db.activity.Activity, float]]
+
+   Get activity recommendations based on similar users' preferences.
+   Returns list of (activity, score) tuples sorted by score.
+
+
+.. py:function:: get_user_activity_preferences(user_id: int) -> Dict[int, float]
+
+   Build a preference profile for a user based on their voting history.
+   Returns a dictionary mapping activity IDs to preference scores.
+
+

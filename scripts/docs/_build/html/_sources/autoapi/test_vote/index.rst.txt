@@ -1,0 +1,46 @@
+test_vote
+=========
+
+.. py:module:: test_vote
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_vote.setup_test_activities
+   test_vote.test_get_activity_ranking
+   test_vote.test_vote_for_activities
+   test_vote.test_vote_with_duplicate_activity
+   test_vote.test_vote_with_invalid_score
+
+
+Module Contents
+---------------
+
+.. py:function:: setup_test_activities()
+
+   Set up test activities before each test.
+
+
+.. py:function:: test_get_activity_ranking()
+
+   Test getting activities ranked by average score.
+
+
+.. py:function:: test_vote_for_activities()
+
+   Test voting for activities with scores.
+
+
+.. py:function:: test_vote_with_duplicate_activity()
+
+   Test that voting for same activity twice is rejected.
+
+
+.. py:function:: test_vote_with_invalid_score()
+
+   Test that invalid scores (outside 1-10) are rejected.
+
+

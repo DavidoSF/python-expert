@@ -1,0 +1,55 @@
+test_vote_endpoint_validation
+=============================
+
+.. py:module:: test_vote_endpoint_validation
+
+.. autoapi-nested-parse::
+
+   Test vote endpoint validations
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   test_vote_endpoint_validation.client
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_vote_endpoint_validation.setup_test_data
+   test_vote_endpoint_validation.test_get_votes_for_existing_activity
+   test_vote_endpoint_validation.test_get_votes_for_existing_activity_with_no_votes
+   test_vote_endpoint_validation.test_get_votes_for_nonexistent_activity
+
+
+Module Contents
+---------------
+
+.. py:function:: setup_test_data()
+
+   Set up test data before each test.
+
+
+.. py:function:: test_get_votes_for_existing_activity()
+
+   Test that querying votes for existing activity succeeds.
+
+
+.. py:function:: test_get_votes_for_existing_activity_with_no_votes()
+
+   Test querying an activity that exists but has no votes yet.
+
+
+.. py:function:: test_get_votes_for_nonexistent_activity()
+
+   Test that querying votes for non-existent activity returns 404.
+
+
+.. py:data:: client
+
